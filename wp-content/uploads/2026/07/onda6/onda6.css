@@ -1,0 +1,1628 @@
+/* onda6 — CSS proprio da onda 6, nao toca no tema. */
+
+/* 3 cards estaticos de praticas na home */
+.praticas-3{display:flex;flex-wrap:wrap;gap:20px;margin:0;padding:0;list-style:none}
+.praticas-3__card{flex:1 1 300px;display:flex;flex-direction:column;margin-bottom:0}
+.praticas-3__card .home-experience__list-item-content{display:block;flex:1 0 auto;
+  margin-bottom:20px}
+.praticas-3__card .home-experience__list-item-more{display:inline-block;margin-top:auto}
+@media only screen and (max-width: 991px){
+  .praticas-3{gap:10px}
+  .praticas-3__card{flex:1 1 100%}
+}
+
+/* Barra de logos de clientes: com o jQuery reposto (13_baixar_jquery.py) o tema volta a
+   trocar cada <img> de .svg por um <svg> inline (classe .replaced-svg). As regras da
+   onda 5 miravam so `img`, e os logos vetoriais passavam a renderizar no tamanho
+   intrinseco. Estas regras repetem os mesmos limites para o <svg> inline. */
+.clientes-logos__item svg{display:block;width:auto;height:auto;
+  max-height:30px;max-width:132px;
+  filter:grayscale(1) opacity(.65);transition:filter 300ms ease-in-out}
+.clientes-logos__item--alto svg{max-height:44px;max-width:96px}
+@media (hover:hover) and (pointer:fine){.clientes-logos__item:hover svg{filter:grayscale(1) opacity(1)}}
+@media only screen and (max-width: 991px){
+  .clientes-logos__item svg{max-height:24px;max-width:104px}
+  .clientes-logos__item--alto svg{max-height:36px;max-width:78px}
+}
+
+/* onda7:home-hero:ini */
+/* onda7 — home: hero compacto + menos vazio antes das praticas */
+.homepage .banner{min-height:0;padding:150px 0 60px}
+.homepage .banner h2{line-height:116%}
+@media only screen and (min-width: 992px){
+  .homepage .banner{height:auto;min-height:0;padding:170px 0 80px;align-items:flex-start}
+  .homepage .banner h2{line-height:116%;margin-bottom:26px}
+}
+.homepage .wrap-gradient-1{padding:0}
+.homepage .home-experience{padding-top:90px}
+@media only screen and (max-width: 991px){
+  .homepage .home-experience{padding-top:70px}
+}
+/* onda7:home-hero:fim */
+
+/* onda7:lideres-link:ini */
+/* onda7 — "Nossos Lideres" da home vira caminho para a pagina de lideres */
+.home-leaders__subtitle .onda7-titulo-link{color:inherit;text-decoration:none;
+  transition:color 300ms ease-in-out}
+@media (hover:hover) and (pointer:fine){.home-leaders__subtitle .onda7-titulo-link:hover{color:#00ADEC}}
+.onda7-vertodos{display:inline-flex;align-items:center;gap:10px;
+  color:var(--whiteColor,#fff);font-family:var(--fontFamily);font-size:16px;
+  font-weight:700;text-decoration:none;margin-top:6px;
+  transition:color 300ms ease-in-out}
+@media (hover:hover) and (pointer:fine){.onda7-vertodos:hover{color:#00ADEC}}
+.onda7-vertodos svg{flex:none}
+/* onda7:lideres-link:fim */
+
+
+/* onda8:hero-contatos:ini */
+/* onda8 — linha de contatos no hero das homes */
+.hero-contatos{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;
+  gap:10px;position:relative;z-index:5}
+.hero-contatos__link{display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border:1px solid rgba(255,255,255,.55);border-radius:999px;
+  color:#fff;font-family:var(--secondaryFontFamily);font-size:15px;font-weight:400;
+  line-height:1.2;text-decoration:none;background:rgba(2,14,102,.28);
+  transition:all 300ms ease-in-out}
+.hero-contatos__link svg{flex:none}
+.hero-contatos__link svg path{fill:currentColor;stroke:none}
+.hero-contatos__link:hover,.hero-contatos__link:focus-visible{
+  color:#020e66;background:#00adec;border-color:#00adec;text-decoration:none}
+.hero-contatos__link:hover svg path,.hero-contatos__link:focus-visible svg path{
+  fill:currentColor}
+.hero-contatos__link--wa:hover,.hero-contatos__link--wa:focus-visible{
+  color:#fff;background:#25d366;border-color:#25d366}
+@media only screen and (max-width: 767px){
+  .hero-contatos{gap:8px;margin-top:18px}
+  .hero-contatos__link{padding:7px 13px;font-size:14px}
+}
+/* onda8:hero-contatos:fim */
+
+/* onda8:dobra:ini */
+/* onda8 — primeira dobra exata: hero + faixa de logos = 1 tela */
+:root{--onda8-logos-h:250px}
+@media only screen and (min-width: 992px){
+  .homepage .banner{
+    height:calc(100vh - var(--onda8-logos-h));
+    height:calc(100svh - var(--onda8-logos-h));
+    min-height:430px;
+    padding:118px 0 20px;
+    align-items:center;
+  }
+  /* a lampada preenche o hero, qualquer que seja a altura calculada */
+  .homepage .banner .banner__background video{object-fit:cover;height:100% !important}
+  /* a faixa de logos nao pode crescer alem do que entrou na conta */
+  /* onda39 (S-130 / #183): padding-top 40 -> 24. O Mario apontou que o espaco
+     entre 'Exemplos de empresas que confiam...' e a borda de cima da faixa
+     estava grande. A faixa encurta e o hero cresce na mesma medida — a dobra
+     segue exata porque o onda8-dobra.js a RE-MEDE em runtime, e a imagem de
+     fundo se expande junto (object-fit:cover, logo acima). */
+  .homepage .clientes-logos{padding-top:24px;padding-bottom:36px}
+}
+/* telas baixas (ex.: 1366x768): aperta o respiro para o subtitulo nao ser cortado */
+@media only screen and (min-width: 992px) and (max-height: 820px){
+  .homepage .banner{padding:106px 0 12px;min-height:360px}
+}
+/* onda8:dobra:fim */
+
+/* onda8:hero-contatos-v2:ini */
+/* onda8.1 — pills do hero maiores, texto branco travado e clique garantido */
+.hero-contatos{gap:12px;margin-top:6px;position:relative;z-index:6}/* onda53 v4: 16 -> 6, os 12px que faltavam para a dobra fechar com o eyebrow acima do slogan. *//* onda53 (13/08): 26 -> 16, o resto do respiro que o subtitulo mais longo pediu. */
+.hero-contatos__link{
+  padding:11px 20px;
+  font-size:17px;
+  gap:10px;
+  color:#fff !important;
+  text-decoration:none !important;
+  border:1.5px solid rgba(255,255,255,.78);
+  background:rgba(2,14,102,.45);
+  position:relative;
+  z-index:6;
+}
+.hero-contatos__link svg{width:24px;height:24px}
+.hero-contatos__link svg path{fill:currentColor !important;stroke:none}
+.hero-contatos__link:hover,.hero-contatos__link:focus-visible{
+  color:#020e66 !important;background:#00adec;border-color:#00adec}
+.hero-contatos__link--wa:hover,.hero-contatos__link--wa:focus-visible{
+  color:#fff !important;background:#25d366;border-color:#25d366}
+@media only screen and (max-width: 767px){
+  .hero-contatos{gap:9px;margin-top:20px}
+  .hero-contatos__link{padding:9px 15px;font-size:15px}
+  .hero-contatos__link svg{width:20px;height:20px}
+}
+/* onda8:hero-contatos-v2:fim */
+
+/* onda8:menu-contatos:ini */
+/* onda8.1 — contatos como icones na barra superior (todas as paginas) */
+.menu__contatos{display:none}
+@media only screen and (min-width: 992px){
+  /* o header era um space-between de 3 itens (logo | nav | idioma); com o 4o
+     item a distribuicao mudaria de lugar, entao o nav fica centrado por margem
+     automatica e o par contatos+idioma encosta na direita */
+  .menu .container>.menu__nav{margin-left:auto;margin-right:auto}
+  .menu__contatos{
+    display:flex;align-items:center;gap:16px;order:3;
+    margin-left:auto;padding-right:14px}
+  .menu__contatos-link{
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#fff;line-height:0;opacity:.85;
+    transition:all 300ms ease-in-out}
+  .menu__contatos-link svg{width:19px;height:19px}
+  .menu__contatos-link svg path{fill:currentColor !important;stroke:none}
+  .menu__contatos-link:hover,.menu__contatos-link:focus-visible{
+    color:#00adec;opacity:1}
+  .menu__contatos-link--wa:hover,.menu__contatos-link--wa:focus-visible{
+    color:#25d366}
+  /* nos posts o header do tema e branco — icone navy para nao sumir */
+  .single:not(.single-experience) .menu__contatos-link{color:#020e66;opacity:.75}
+}
+/* onda8:menu-contatos:fim */
+
+/* onda8:hero-slogan-alto:ini */
+/* onda8.2 — slogan mais alto e mais espacado, com "Resultado" parado */
+@media only screen and (min-width: 992px){
+  /* 3 x 99,2 = 297,6; -68,6 + 297,6 + 12,8 = 241,8 = altura de margem de hoje */
+  .homepage .banner h2{
+    line-height:160%;
+    margin-top:-68.6px;
+    margin-bottom:7px;/* onda53 v4 (13/08): 6 -> -20. Pedido do Mario: o espaco entre as 3 palavras e a frase 'igualmente distribuido'. Medido NA TINTA (analise de pixel, porque a caixa de linha mente com line-height 160%): gap entre as palavras 20px, gap ate a frase 46px. O -20 desconta a entrelinha morta e iguala os tres. Editado NO LUGAR (valor gemeo). *//* onda53: 12,8 -> 6. O line-height de 160% e o margin-top da onda 8.2 (pedido do Mario: slogan alto e espacado) ficam INTACTOS. */
+  }
+}
+@media only screen and (min-width: 992px) and (max-height: 839px){
+  /* pouca folga sob o header: aumento menor, mesma conta */
+  .homepage .banner h2{
+    line-height:126%;
+    margin-top:-15.8px;
+    margin-bottom:-3.6px;/* onda53 v4: 23,4 -> -3,6. Mesmo pedido de ritmo igual, agora na regra de tela BAIXA (<=839px de altura), que e a que o navegador do Mario provavelmente usa. Medido na tinta em 760px: gap entre palavras 19px, gap ate a frase 46px; -3,6 desconta os 27px de diferenca. */
+  }
+}
+/* onda8:hero-slogan-alto:fim */
+
+/* onda9:rede:ini */
+/* onda9 — pagina "Nossa rede": UM mapa-mundi + pins com cartao no hover */
+/* fundo navy proprio: o wrap-gradient do tema clareia ate #A2BAE4 embaixo, e a
+   pagina e longa o suficiente para o texto claro sumir na parte de baixo */
+.rede{background:#020E66;padding:80px 0 100px}
+.rede__titulo{color:var(--whiteColor,#fff);font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:30px;font-weight:700;line-height:130%;margin:0 0 24px}
+.rede__eyebrow{color:#00ADEC;font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:14px;font-weight:900;letter-spacing:.5em;text-transform:uppercase;
+  margin:0 0 12px}
+.rede-mapa{margin:0 0 70px}
+.rede-mapa__box{background:rgba(255,255,255,.05);border:1px solid rgba(170,213,232,.35);
+  padding:20px}
+/* o palco tem a MESMA proporcao do viewBox (1000x460), entao os pins podem ser
+   posicionados em % e acompanham o mapa em qualquer largura de tela */
+.rede-mapa__palco{position:relative}
+.rede-mapa__svg{display:block;width:100%;height:auto}
+.rede-mapa__grade{stroke:rgba(170,213,232,.14);stroke-width:1}
+.rede-mapa__terra{fill:#0E41A7;stroke:#AAD5E8;stroke-width:1.2;stroke-linejoin:round;
+  fill-opacity:.6}
+
+/* --- pins (HTML por cima do SVG) --- */
+.rede-pin{position:absolute;width:0;height:0;z-index:10}
+.rede-pin__botao{position:absolute;left:-12px;top:-12px;width:24px;height:24px;
+  padding:0;border:1px solid #020E66;border-radius:50%;background:#00ADEC;color:#020E66;
+  cursor:pointer;font-family:var(--fontFamily),Arial,sans-serif;font-size:12px;
+  font-weight:900;line-height:22px;text-align:center;
+  box-shadow:0 0 0 4px rgba(0,173,236,.25);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+.rede-pin__botao:hover,.rede-pin__botao:focus-visible{outline:0;background:#fff;
+  box-shadow:0 0 0 7px rgba(0,173,236,.4)}
+.rede-pin.is-realce .rede-pin__botao{background:#fff;transform:scale(1.2);
+  box-shadow:0 0 0 8px rgba(0,173,236,.45)}
+/* o cartao encosta na borda de baixo do botao (top:15px = raio do botao): sem
+   vao, o mouse vai do pin ate o link sem o cartao sumir */
+.rede-pin__card{position:absolute;left:50%;top:12px;width:270px;
+  transform:translateX(-50%);padding:14px 0 0;opacity:0;visibility:hidden;
+  pointer-events:none;transition:opacity .15s ease}
+.rede-pin__card-corpo{background:#020E66;border:1px solid #00ADEC;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);padding:16px 18px}
+.rede-pin:hover,.rede-pin:focus-within,.rede-pin.is-aberto{z-index:40}
+.rede-pin:hover .rede-pin__card,.rede-pin:focus-within .rede-pin__card,
+.rede-pin.is-aberto .rede-pin__card{opacity:1;visibility:visible;pointer-events:auto}
+.rede-pin__nome{color:var(--whiteColor,#fff);font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:18px;font-weight:700;line-height:130%;margin:0 0 6px}
+.rede-pin__local{color:#AAD5E8;font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:14px;line-height:140%;margin:0 0 10px}
+.rede-pin__desc{color:rgba(255,255,255,.85);font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:14px;line-height:140%;margin:0 0 10px}
+.rede-pin__link{display:inline-block;color:#00ADEC;
+  font-family:var(--fontFamily),Arial,sans-serif;font-size:14px;font-weight:700;
+  text-decoration:none}
+.rede-pin__link:hover,.rede-pin__link:focus{color:#fff;text-decoration:underline}
+/* pins colados na borda direita do mapa jogariam o cartao para fora */
+.rede-pin--esq .rede-pin__card{left:0;transform:none}
+.rede-pin--dir .rede-pin__card{left:auto;right:0;transform:none}
+
+.rede-mapa__legenda{display:flex;flex-wrap:wrap;gap:24px;margin:18px 0 0;padding:0;
+  list-style:none;color:var(--whiteColor,#fff);font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:15px}
+.rede-mapa__legenda li{display:flex;align-items:center;gap:10px}
+.rede-mapa__chave{width:16px;height:16px;border-radius:50%;flex:none;display:inline-block;
+  background:#00ADEC}
+.rede-mapa__nota{color:#AAD5E8;font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:14px;margin:12px 0 0}
+
+.rede-lista{display:flex;flex-wrap:wrap;gap:16px;margin:0;padding:0;list-style:none}
+.rede-lista__item{flex:1 1 300px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(170,213,232,.3);padding:24px;display:flex;
+  flex-direction:column;gap:8px;transition:border-color .15s ease,background .15s ease}
+@media (hover:hover) and (pointer:fine){.rede-lista__item:hover{background:rgba(255,255,255,.1);border-color:#00ADEC}}
+.rede-lista__num{display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:50%;background:#00ADEC;color:#020E66;
+  font-family:var(--fontFamily),Arial,sans-serif;font-weight:900;font-size:14px}
+.rede-lista__nome{color:var(--whiteColor,#fff);font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:22px;font-weight:700;margin:0}
+.rede-lista__local{color:#AAD5E8;font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:15px;margin:0}
+.rede-lista__link{color:#00ADEC;font-family:var(--fontFamily),Arial,sans-serif;
+  font-size:15px;font-weight:700;text-decoration:none;margin-top:auto}
+@media (hover:hover) and (pointer:fine){.rede-lista__link:hover{color:#fff}}
+@media only screen and (max-width: 991px){
+  .rede-mapa__box{padding:10px}
+  /* no celular o mapa fica com ~340px de largura: os pins da Europa encostam
+     mesmo assim. A lista abaixo do mapa e que cumpre o papel de leitura la. */
+  .rede-pin__botao{left:-11px;top:-11px;width:22px;height:22px;line-height:20px;
+    font-size:11px;box-shadow:0 0 0 3px rgba(0,173,236,.25)}
+  .rede-pin__card{width:230px;top:11px}
+  .rede-lista__item{flex:1 1 100%}
+}
+/* onda9:rede:fim */
+
+/* onda10:header-contraste:ini */
+/* onda10 (S-04 / #72) — icones de contato legiveis nos 2 estados da barra */
+@media only screen and (min-width: 992px){
+  /* estado 1 — barra transparente sobre o hero: branco (como na onda 8.1) */
+  .menu__contatos-link{color:#ffffff;opacity:.85}
+  .menu__contatos-link:hover,.menu__contatos-link:focus-visible{color:#00adec;opacity:1}
+  .menu__contatos-link--wa:hover,.menu__contatos-link--wa:focus-visible{color:#25d366}
+
+  /* estado 2 — barra BRANCA: hover do header (todas as paginas) e paginas de
+     post. Navy sobre branco = 16.5:1. */
+  .menu:hover .menu__contatos-link,
+  .single:not(.single-experience) .menu .menu__contatos-link{color:#020e66;opacity:1}
+  .menu:hover .menu__contatos-link svg path,
+  .single:not(.single-experience) .menu .menu__contatos-link svg path{
+    fill:currentColor !important;stroke:none}
+  .menu:hover .menu__contatos-link:hover,
+  .menu:hover .menu__contatos-link:focus-visible,
+  .single:not(.single-experience) .menu .menu__contatos-link:hover,
+  .single:not(.single-experience) .menu .menu__contatos-link:focus-visible{color:#0e41a7}
+  .menu:hover .menu__contatos-link--wa:hover,
+  .menu:hover .menu__contatos-link--wa:focus-visible,
+  .single:not(.single-experience) .menu .menu__contatos-link--wa:hover,
+  .single:not(.single-experience) .menu .menu__contatos-link--wa:focus-visible{color:#128c7e}
+}
+/* onda10:header-contraste:fim */
+
+/* onda10:hero-escadinha:ini */
+/* onda10 (S-01/#51) virou S-39 (31/07): os recuos de escadinha SAIRAM por
+   decisao do Mario — as 3 palavras alinhadas a esquerda. Os spans .onda10-degrau
+   ficam (estrutura de 3 linhas protegida pela S01). */
+.homepage .banner h2 .onda10-degrau{display:inline;margin-left:0 !important}
+/* onda10:hero-escadinha:fim */
+
+/* onda10:numeros:ini */
+/* onda10 (S-06 / #55) — numeros da home: escada de progressao, numero menor,
+   texto maior. O ponto final saiu do HTML (nao da para tirar por CSS). */
+.our-numbers__list>[class^=col]{position:relative}
+@media only screen and (min-width: 992px){
+  /* escada: cada numero um degrau acima do anterior (o tema escalonava sem ordem) */
+  .our-numbers__list>[class^=col]:nth-child(1){margin-top:120px}
+  .our-numbers__list>[class^=col]:nth-child(2){margin-top:80px}
+  .our-numbers__list>[class^=col]:nth-child(3){margin-top:40px}
+  .our-numbers__list>[class^=col]:nth-child(4){margin-top:0}
+  /* seta de progressao entre colunas vizinhas */
+  .our-numbers__list>[class^=col]+[class^=col]::before{
+    content:"↗";
+    position:absolute;left:-16px;top:-44px;
+    color:#00adec;font-size:34px;line-height:1;font-weight:700;
+    pointer-events:none}
+  .our-numbers__list strong{font-size:clamp(52px,27.7px + 3.16vw,72px);padding-bottom:12px}
+  .our-numbers__list span{font-size:clamp(19px,10.5px + 1.11vw,26px)}
+}
+@media only screen and (max-width: 991px){
+  /* onda66: o 52px de <=991 virou o PISO do clamp em .our-numbers__list strong */
+  /* onda66: o 19px de <=991 virou o PISO do clamp em .our-numbers__list span */
+}
+/* onda10:numeros:fim */
+
+/* onda10:hero-numeros:ini */
+/* onda10 (S-27 / #77) — big numbers empilhados a direita da capa */
+.hero-numeros{display:none}
+@media only screen and (min-width: 1200px){
+  .homepage .banner .container{position:relative}
+  /* o texto do hero para antes da pilha, para nao passar por baixo dela */
+  .homepage .banner .row>[class^=col]>h2,
+  .homepage .banner .row>[class^=col]>p,
+  .homepage .banner .row>[class^=col]>.hero-contatos{max-width:62%}
+  .hero-numeros{
+    display:flex;flex-direction:column;justify-content:center;gap:20px;
+    list-style:none;margin:0;padding:0;
+    position:absolute;right:calc(var(--bs-gutter-x, 1.5rem) * .5);top:50%;
+    transform:translateY(-50%);
+    width:300px;text-align:right;z-index:4}
+  .hero-numeros__item{display:block;border-right:2px solid rgba(0,173,236,.85);
+    padding-right:14px}
+  /* onda35 (S-126 / #179): peso 800 -> 400. O 800 NAO esta entre os pesos
+     carregados (o <head> pede wght@200;300;400;600;700;900), entao o navegador
+     arredondava para cima e os numeros saiam em 900/Black — o "gordinho" que o
+     Mario apontou. Corrigido AQUI, no lugar, e nao num bloco de override: dois
+     lugares declarando o mesmo font-weight e a classe de bug dos "valores
+     gemeos" que custou 4 achados na onda 31. Tamanho e cor nao mudam. */
+  .hero-numeros__valor{display:block;
+    font-family:var(--fontFamily);font-weight:400;
+    font-size:40px;line-height:1;color:#00adec}
+  .hero-numeros__texto{display:block;margin-top:5px;
+    font-family:var(--secondaryFontFamily);font-weight:400;
+    font-size:14px;line-height:1.3;color:rgba(255,255,255,.92)}
+}
+@media only screen and (min-width: 1200px) and (max-height: 820px){
+  .hero-numeros{gap:13px;width:270px}
+  .hero-numeros__valor{font-size:33px}
+  .hero-numeros__texto{font-size:13px}
+}
+/* onda10:hero-numeros:fim */
+
+/* onda10:clientes-barra:ini */
+/* onda10 (S-25 / #75) — barra de clientes sem fundo branco */
+.clientes-logos{background:#020e66;isolation:isolate}
+.clientes-logos__title{color:rgba(255,255,255,.72)}
+.clientes-logos__item img{
+  filter:grayscale(1) invert(1) contrast(1.05);
+  mix-blend-mode:screen;
+  opacity:.88;
+  transition:opacity 300ms ease-in-out}
+@media (hover:hover) and (pointer:fine){.clientes-logos__item:hover img{
+  filter:grayscale(1) invert(1) contrast(1.05);
+  opacity:1}}
+/* onda10:clientes-barra:fim */
+
+/* onda12:praticas-nav:ini */
+.praticas-nav{display:flex;flex-wrap:wrap;gap:12px 28px;margin:12px 0 24px;padding:0;
+  list-style:none}
+.praticas-nav__item{margin:0}
+.praticas-nav__link{color:#fff;font-weight:600;text-decoration:underline;
+  text-underline-offset:3px}
+@media (hover:hover) and (pointer:fine){.praticas-nav__link:hover{color:#fff;text-decoration:none}}
+.experience-single__others .col-12 > h5{color:#fff}
+@media only screen and (max-width: 991px){
+  .praticas-nav{gap:8px 20px}
+}
+/* onda12:praticas-nav:fim */
+
+/* onda11:s13-form-topo:ini */
+.job-contact--topo{
+  margin-top:0 !important;
+  padding:60px 0 100px !important;
+}
+@media only screen and (max-width: 767px){
+  .job-contact--topo{padding:40px 0 60px !important}
+}
+/* onda11:s13-form-topo:fim */
+
+/* onda13:hero-malha:ini */
+/* S-23 (#73): a regra do tema so cobre `.banner__background video`; a malha
+   estatica + canvas precisam do proprio posicionamento. opacity .5 na imagem =
+   o mesmo que o tema aplicava no video (sem isso o slogan branco briga com a
+   malha acesa do canto inferior esquerdo — verificado no prototipo). */
+.banner__background .hero-malha__img{
+  position:absolute;top:0;left:0;width:100% !important;height:100% !important;
+  object-fit:cover;opacity:.5;backface-visibility:hidden}
+.banner__background .hero-malha__canvas{
+  position:absolute;top:0;left:0;width:100%;height:100%}
+/* onda13:hero-malha:fim */
+
+/* onda14:hero-malha-cheia:ini */
+/* S-30 (#82): a malha preenche o hero inteiro. (a) sem a mascara vertical do
+   tema (virava moldura esmaecida na imagem clara); (b) o div do fundo agora e
+   filho direto da section.banner — top/bottom prendem ao hero, nao ao box do
+   .container; (c) conteudo acima do fundo. */
+.banner__background--malha{
+  -webkit-mask-image:none !important;
+  mask-image:none !important;
+  top:0;left:0;right:0;bottom:0;width:100%}
+.banner--malha>.container{position:relative;z-index:5}
+/* onda14:hero-malha-cheia:fim */
+
+/* onda14:menu-executivo:ini */
+/* (a) dropdown com a altura do conteudo — sai o painel preto de tela inteira
+   (o tema usa min-height:calc(100vh - 68px) + gradiente preto). */
+.menu__nav-submenu{min-height:0 !important;background:none !important;
+  padding-top:0 !important}
+.menu__nav-submenu>div{padding:22px 0 26px}
+.menu__nav-sublink{font-size:17px !important;padding:6px 0 !important;
+  font-weight:300}
+.menu__nav-submenu h5{margin:12px 0}
+/* (b) navegacao do rodape — espelho compacto da barra superior */
+.rodape-menu{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;
+  margin:0 0 26px;padding:0 0 20px;list-style:none;
+  border-bottom:1px solid rgba(170,213,232,.25)}
+.rodape-menu li{margin:0}
+.rodape-menu a{color:#fff;font-size:14px;text-decoration:none;
+  transition:color 200ms ease}
+@media (hover:hover) and (pointer:fine){.rodape-menu a:hover{color:#00ADEC}}
+/* onda14:menu-executivo:fim */
+
+/* onda14:fundo-sem-sobras:ini */
+/* S-33 (#85): o padding-bottom de 100px do wrap-gradient-2 expunha o fim
+   azul-claro do gradiente entre o CTA e o footer — a "sobra" da home. */
+.home .wrap-gradient-2{padding-bottom:0}
+/* onda14:fundo-sem-sobras:fim */
+
+/* onda15:hero-scrims:ini */
+/* S-34: legibilidade do hero sobre a foto da lampada. Vidro fosco branco
+   translucido — pedido explicito de "fundo com um branco transparente". */
+/* onda37 (S-128 / #181): max-width 780 -> 580. O card estava SUPERDIMENSIONADO:
+   medido nos 4 homes, o subtitulo cabe em 2 linhas ate 580px (em 560 o alemao vai
+   a 3). Os 200px liberados vao para o vao central, onde mora o "m" — pedido do
+   Mario: "ficou muito larga a caixa transparente dos lados, sobra pouco espaco
+   para o M no centro". Vao em 1400px: 140px -> ~320px. */
+.hero-texto{
+  display:inline-block;max-width:640px;/* onda53 (13/08): 580 -> 640. O subtitulo novo ("...tradicional que utiliza IA...", pedido do Mario) ia a 4 LINHAS em 580px e quebrava a dobra exata da onda 8 em 56px. Medido: 640px devolve 3 linhas e sobra 0, e o M so cai de 192 -> 186px em 1400 (folga 62px, teto de 300px em >=1600 intacto). */
+  background:rgba(255,255,255,.10);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-radius:14px;padding:13px 30px;margin-left:-30px}
+.hero-texto p{margin-bottom:4px}/* onda53 v4: o tema deixa 16px entre a frase e as pilulas; 4px sao os ultimos 12px que a dobra precisava com o eyebrow acima. *//* onda53 v4: 20 -> 13, o resto dos 34px que o eyebrow acima do slogan custou à dobra. *//* onda53: 26 -> 20 no eixo vertical; parte dos 57px que o subtitulo novo pediu emprestado. */
+/* a onda 8.2 subia o slogan com margin-top negativa — dentro do painel isso
+   jogava o "Estratégia" para FORA da caixinha (achado do Mario, 31/07). O
+   painel contem o h2; a dobra exata e re-medida pelo onda8-dobra.js. */
+.hero-texto h2{margin-top:0 !important}
+/* o tema limita o <p> a 70% — dentro do painel isso quebrava o subtitulo em
+   3 linhas; com a largura toda ele cabe em 2 (pedido do Mario, 31/07). */
+.hero-texto p{max-width:100%}
+.banner--malha .hero-numeros{
+  background:rgba(255,255,255,.10);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-radius:14px;padding:20px 24px}
+/* onda15:hero-scrims:fim */
+
+/* onda15:barras-gemeas:ini */
+/* S-36: as duas barras gemeas. A superior adota a fonte da inferior
+   (peso 400, 15px); os canais de comunicacao ganham tamanho nas duas. */
+.menu__nav-link{font-weight:400 !important;font-size:15px !important}
+.rodape-menu a{font-size:15px}
+.menu__contatos svg{width:22px !important;height:22px !important}
+.rodape-contatos{display:flex;justify-content:center;gap:22px;
+  margin:14px 0 0;padding:0;list-style:none}
+/* o tema esconde .menu__contatos no mobile e empurra para a direita no
+   desktop (margin-left:auto) — no rodape ele fica visivel e centrado */
+.rodape-contatos .menu__contatos{display:flex;gap:26px;align-items:center;
+  margin-left:0 !important;padding-right:0 !important}
+.rodape-contatos .menu__contatos-link{color:#fff;opacity:.9}
+@media (hover:hover) and (pointer:fine){.rodape-contatos .menu__contatos-link:hover{color:#00ADEC;opacity:1}}
+.rodape-contatos .menu__contatos-link svg{width:22px !important;
+  height:22px !important}
+/* onda15:barras-gemeas:fim */
+
+/* onda15:rodape-barra:ini */
+/* S-36 v2: a barra do rodape e um CLONE literal da superior (mesmo HTML e
+   CSS do tema). Aqui so o que muda de contexto: estatica (a original e fixa
+   no topo), submenus abrindo para cima, respiro antes da linha legal. */
+.rodape-barra{position:relative;margin:0 0 24px;padding:6px 0 10px;
+  border-bottom:1px solid rgba(170,213,232,.25)}
+.rodape-barra .menu{position:static !important;transform:none !important}
+.rodape-barra .menu__nav-submenu{top:auto !important;bottom:100%}
+/* onda15:rodape-barra:fim */
+
+/* onda15:rodape-legal:ini */
+/* S-38: linha legal enxuta — o logo e o LinkedIn ja moram na barra clonada
+   (S-36 v2); sobra so o link pequeno da politica, discreto e centrado. */
+.rodape-legal{text-align:center;padding:2px 0 0}
+.rodape-legal .footer__contacts-link{font-size:12px;opacity:.65}
+@media (hover:hover) and (pointer:fine){.rodape-legal .footer__contacts-link:hover{opacity:1}}
+/* onda15:rodape-legal:fim */
+
+/* onda16:hero-layout-s41:ini */
+/* S-41 (#97): a pilha de numeros vai ate perto da borda direita do viewport
+   ((100% - 100vw)/2 = margem do container ate a borda; +40px de respiro) e
+   alarga para os textos nao passarem de 2 linhas. O painel do slogan faz o
+   movimento espelhado para a esquerda — min() garante que em viewport
+   estreito ele nunca fique PIOR que os -30px que ja tinha (onda15). */
+@media only screen and (min-width: 1200px){
+  .hero-numeros{
+    right:calc((100% - 100vw)/2 + 40px);
+    /* o width daqui saiu na onda37: era 330px e NUNCA valia — a onda18 declara
+       420px no mesmo breakpoint, mais adiante no arquivo. Valor gemeo morto. */
+  }
+  .hero-texto{
+    margin-left:min(-30px, calc((100% - 100vw)/2 + 40px));
+  }
+}
+/* o bloco @media 1440px daqui saiu na onda37: declarava width:380px, sobrescrito
+   pelos 440px da onda18 no mesmo breakpoint. Valor gemeo morto. */
+/* onda16:hero-layout-s41:fim */
+
+/* onda16:hover-marcas-s42:ini */
+/* S-42 (#98): hover com a cor da marca de cada app. WhatsApp verde ja vinha
+   da onda8; aqui entram LinkedIn, Instagram e e-mail (ciano Mirow — escolha
+   para manter coerencia com o site). Pills do hero: fundo na cor da marca;
+   icones das barras: so a cor do icone. */
+.hero-contatos__link--in:hover,.hero-contatos__link--in:focus-visible{
+  color:#fff !important;background:#0A66C2;border-color:#0A66C2}
+.hero-contatos__link--ig:hover,.hero-contatos__link--ig:focus-visible{
+  color:#fff !important;background:#E1306C;border-color:#E1306C}
+.hero-contatos__link--mail:hover,.hero-contatos__link--mail:focus-visible{
+  color:#020e66 !important;background:#00ADEC;border-color:#00ADEC}
+.menu__contatos-link--in:hover,.menu__contatos-link--in:focus-visible{
+  color:#378FE9}
+.menu__contatos-link--ig:hover,.menu__contatos-link--ig:focus-visible{
+  color:#E1306C}
+.menu__contatos-link--mail:hover,.menu__contatos-link--mail:focus-visible{
+  color:#00ADEC}
+@media (hover:hover) and (pointer:fine){/* onda16:hover-marcas-s42:fim */
+
+/* onda17:hero-horizonte-s49:ini */
+/* S-49 (#107): hero Horizonte 2050 — cena no tamanho do fundo do banner
+   (que a onda14 ja prende a section inteira, sem mascara) e o convite ao
+   scroll como canvas pequeno no centro-base, acima do conteudo. As zonas
+   do tema: conteudo z-5 (onda14); o convite fica z-4 para nunca roubar
+   clique das pills. */
+.banner__background .hero-horizonte__cena{
+  position:absolute;top:0;left:0;width:100%;height:100%;display:block}}
+.hero-horizonte__convite{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+  width:48px;height:72px;z-index:4;pointer-events:none}
+/* onda17:hero-horizonte-s49:fim */
+
+/* onda18:contato-botao:ini */
+/* S-62: o botao herdava #0e41a7 do tema sobre a secao azul (invisivel).
+   Passa a ciano Mirow com texto navy — o contraste maximo da paleta.
+   A regra do tema e `.contact__form .frm_pro_form .frm_button_submit` (3 classes,
+   com !important): o seletor daqui precisa da MESMA especificidade ou mais, senao
+   perde mesmo tendo !important. */
+.contact .contact__form .frm_pro_form .frm_button_submit,
+.contact .contact__form .frm_pro_form .frm_final_submit{
+  background:#00ADEC !important;border:2px solid #00ADEC !important;
+  color:#020E66 !important;font-weight:700 !important;letter-spacing:.02em;
+  transition:background 200ms ease,color 200ms ease}
+@media (hover:hover) and (pointer:fine){.contact .contact__form .frm_pro_form .frm_button_submit:hover,
+.contact .contact__form .frm_pro_form .frm_final_submit:hover{
+  background:#fff !important;border-color:#fff !important;color:#020E66 !important}}
+/* S-60: o asterisco sai do proprio label (o container muda de numero por idioma) */
+/* onda18:contato-botao:fim */
+
+/* onda18:barras:ini */
+/* ---- S-54: texto e icones maiores nas duas barras ---------------------- */
+.menu__nav-link{font-size:17px !important}
+.rodape-menu a{font-size:17px}
+.menu__contatos svg{width:26px !important;height:26px !important}
+.rodape-contatos .menu__contatos-link svg{width:26px !important;height:26px !important}
+.menu__languages-button svg{width:27px;height:27px}
+.menu__languages-list li a{font-size:16px}
+.rodape-legal .footer__contacts-link{font-size:14px}
+@media only screen and (min-width: 992px){
+  /* com fonte e icones maiores a barra fica mais apertada — o gap cede antes
+     de a barra quebrar em 992px */
+  .menu__contatos{gap:14px}
+}
+
+/* ---- S-52: no rodape o seletor de idiomas abre para CIMA ---------------- */
+.rodape-barra .menu__languages-list{top:auto !important;bottom:calc(100% - 2px)}
+/* a setinha do balao vira para baixo (no header ela aponta para cima) */
+.rodape-barra .menu__languages-list::after{top:auto;bottom:-5px;
+  border-bottom:0;border-top:5px solid #000}
+
+/* ---- S-53: menos espaco entre a linha e a politica de privacidade ------- */
+.rodape-barra{margin-bottom:8px !important;padding-bottom:6px !important}
+.rodape-legal{padding-top:0 !important}
+.rodape-menu{margin-bottom:16px;padding-bottom:12px}
+
+/* ---- S-66: "Sobre nos" segue vertical, com texto maior ----------------- */
+.menu__nav-sublink{font-size:19px !important}
+.menu__nav-submenu h5{font-size:15px}
+
+/* ---- S-65: "Praticas" abre em linha, palavras grandes, "|" cinza -------- */
+.menu__nav-sublinks.onda18-praticas{display:flex;flex-wrap:wrap;align-items:center;
+  gap:0 18px;margin:6px 0 0}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem{margin:0;display:flex;
+  align-items:center}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem::before{
+  content:"|";color:#7F7F7F;font-size:30px;font-weight:300;line-height:1;
+  margin-right:18px}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:30px !important;
+  font-weight:600;line-height:1.15;padding:2px 0 !important}
+@media only screen and (max-width: 1366px){
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:24px !important}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem::before{
+    font-size:24px}
+}
+/* no mobile o menu do tema e uma lista empilhada — volta a coluna */
+@media only screen and (max-width: 991px){
+  .menu__nav-sublinks.onda18-praticas{display:block}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem::before{
+    content:none}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:19px !important}
+}
+/* onda18:barras:fim */
+
+/* onda18:voltar-topo:ini */
+/* S-51: botao "voltar ao inicio", fixo na lateral direita, em toda pagina. */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+.onda18-topo{position:fixed;right:22px;bottom:34px;z-index:900;
+  width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+  background:#020E66;border:2px solid #00ADEC;border-radius:50%;
+  color:#fff;text-decoration:none;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity 220ms ease,transform 220ms ease,visibility 220ms ease,
+    background 220ms ease}
+.onda18-topo.is-visivel{opacity:1;visibility:visible;transform:none}
+.onda18-topo:hover,.onda18-topo:focus-visible{background:#00ADEC;color:#020E66}
+.onda18-topo svg{width:22px;height:22px;display:block}
+.onda18-topo svg path{fill:currentColor}
+@media only screen and (max-width: 767px){
+  /* no mobile encosta mais no canto para nao cobrir texto */
+  .onda18-topo{right:14px;bottom:18px;width:44px;height:44px}
+  .onda18-topo svg{width:19px;height:19px}
+}
+@media print{.onda18-topo{display:none}}
+/* onda18:voltar-topo:fim */
+
+/* onda18:carreiras:ini */
+/* S-55: o titulo do formulario de carreiras era navy sobre o gradiente navy
+   do topo da secao — invisivel. Branco, junto das linhas tracejadas do tema. */
+.job-contact--topo .job-contact__title{color:#fff !important}
+.job-contact--topo .container .row .col__title::after{border-left-color:#fff !important}
+.job-contact--topo .container .row .col__title::before{border-top-color:#fff !important}
+
+/* S-64: botao de inscricao no fim da pagina, ancorando no formulario do topo */
+.onda18-inscrever{padding:0 0 90px;text-align:center}
+.onda18-inscrever__link{display:inline-block;background:#00ADEC;color:#020E66;
+  font-weight:700;font-size:19px;letter-spacing:.02em;text-decoration:none;
+  padding:18px 46px;transition:background 200ms ease,color 200ms ease}
+.onda18-inscrever__link:hover,.onda18-inscrever__link:focus-visible{
+  background:#020E66;color:#fff}
+@media only screen and (max-width: 767px){
+  .onda18-inscrever{padding:0 0 54px}
+  .onda18-inscrever__link{font-size:17px;padding:16px 30px}
+}
+/* onda18:carreiras:fim */
+
+/* onda18:insights-colorido:ini */
+/* S-56 (onda 18): card nasce colorido, sem grayscale.
+   S-133 (onda 41): brightness 0.38 -> 0.9 + scrim.
+   S-139 (onda 42, 2026-08-06, #193): segunda rodada do "apagado" — a foto vai
+   a COR PLENA (1.0), o scrim fica so na base (atras do titulo), e o card
+   ganha acento cyan no hover. */
+.page-insights__list-image{filter:grayscale(0%) brightness(1) !important}
+@media (hover:hover) and (pointer:fine){.page-insights__list-item:hover .page-insights__list-image{
+  filter:grayscale(0%) brightness(0.88) !important}}
+/* scrim: denso em CIMA — e no topo do card que o tema poe o titulo
+   (medido: .page-insights__list-title rende dentro do terco superior) */
+.page-insights__list-image{position:relative}
+.page-insights__list-image::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(4,21,69,.78) 0%,rgba(4,21,69,.30) 45%,
+  rgba(4,21,69,0) 75%)}
+/* o conteudo (titulo) fica acima do scrim */
+.page-insights__list-wrap-content{position:relative;z-index:2}
+/* acento de cor no vocabulario do tema: filete cyan que acende no hover */
+.page-insights__list-item{position:relative}
+.page-insights__list-item::before{content:"";position:absolute;left:0;right:0;
+  bottom:0;height:4px;background:#00ADEC;transform:scaleX(0);
+  transform-origin:left;transition:transform 260ms ease;z-index:3}
+@media (hover:hover) and (pointer:fine){.page-insights__list-item:hover::before{transform:scaleX(1)}}
+@media (hover:hover) and (pointer:fine){.page-insights__list-item:hover .page-insights__list-title{color:#7FDBFF}}
+/* onda18:insights-colorido:fim */
+
+/* onda18:home-lideres:ini */
+/* ---- S-50: o icone "in" do card de lider vira link real do LinkedIn ----
+   O card e um <button> (abre o modal da bio) — o <a> nao pode ficar dentro dele,
+   entao mora num wrapper que herda a caixa do card e se sobrepoe ao icone. */
+.onda18-lider{position:relative;display:flex;width:192px;max-width:45%}
+.onda18-lider .home-leaders__card{width:100%;max-width:none;height:100%}
+.onda18-lider__in{position:absolute;right:0;bottom:0;width:35px;height:35px;
+  z-index:3;display:block;border-radius:3px;
+  transition:background 200ms ease}
+.onda18-lider__in:hover,.onda18-lider__in:focus-visible{
+  background:rgba(0,173,236,.22);outline:none}
+/* lider sem LinkedIn no modal: o logo decorativo sai (nao leva a lugar nenhum) */
+.onda18-lider--sem-in .home-leaders__card>span>p>svg{display:none}
+
+/* ---- S-71: menos vao entre "Nossos Lideres" e "Reconhecimentos" ----------
+   Eram 100px (grade de lideres) + 100px (secao dos selos) = 200px. */
+.home-leaders .container .row__content .col{padding-bottom:40px !important}
+.certificates{padding-top:48px !important}
+@media only screen and (max-width: 767px){
+  .home-leaders .container .row__content .col{padding-bottom:28px !important}
+  .certificates{padding-top:32px !important}
+}
+/* onda18:home-lideres:fim */
+
+/* onda18:imprensa:ini */
+/* S-57: imprensa como lista sobre fundo branco — icone do veiculo, nome,
+   data e o titulo como link (o titulo linkado ja funcionava bem). */
+.onda18-imprensa{list-style:none;margin:0 0 60px;padding:0;background:#fff}
+.onda18-imprensa__item{display:grid;
+  grid-template-columns:34px minmax(150px,190px) 108px 1fr;
+  align-items:center;gap:0 18px;padding:16px 22px;
+  border-bottom:1px solid rgba(2,14,102,.12)}
+.onda18-imprensa__item:last-child{border-bottom:0}
+@media (hover:hover) and (pointer:fine){.onda18-imprensa__item:hover{background:#F4F8FC}}
+.onda18-imprensa__logo{width:28px;height:28px;object-fit:contain;display:block;
+  background:#F0F4F8;border-radius:4px;padding:2px;box-sizing:border-box}
+.onda18-imprensa__logo--vazio{display:flex;align-items:center;justify-content:center;
+  width:28px;height:28px;background:#AAD5E8;color:#020E66;font-weight:700;
+  font-size:13px;border-radius:3px}
+.onda18-imprensa__veiculo{color:#020E66;font-weight:700;font-size:15px;
+  line-height:1.25}
+.onda18-imprensa__data{color:#7F7F7F;font-size:14px;white-space:nowrap}
+.onda18-imprensa__titulo{color:#071C25;font-size:16px;line-height:1.35;
+  text-decoration:none;border-bottom:1px solid transparent;transition:all 200ms ease}
+.onda18-imprensa__titulo:hover,.onda18-imprensa__titulo:focus-visible{
+  color:#00ADEC;border-bottom-color:#00ADEC}
+@media only screen and (max-width: 991px){
+  .onda18-imprensa__item{grid-template-columns:28px 1fr;gap:6px 14px;
+    padding:14px 16px}
+  .onda18-imprensa__veiculo{font-size:14px}
+  .onda18-imprensa__data{grid-column:2;font-size:13px}
+  .onda18-imprensa__titulo{grid-column:1 / -1;font-size:15px}
+}
+/* onda18:imprensa:fim */
+
+/* onda18:planeta-setores:ini */
+/* ---- S-77 (#128 v4): 5 cards de grupos de setores ---------------------
+   O Mario encerrou a metafora visual: "remova isso e coloque ... 5 cards com cada
+   grupo de industrias listado, sem planeta nem nada disso. faca no tema do resto
+   da pagina." Entao aqui nao ha SVG, esfera, orbita nem ceu escuro — e o mesmo
+   vocabulario dos 3 cards de praticas da propria secao: caixa navy, titulo
+   branco, itens claros. Sobre o fundo claro do gradiente, navy tem contraste de
+   sobra (o problema anterior era texto navy SOBRE o azul medio, nao a caixa). */
+.onda18-orbe{position:relative;z-index:6;margin:56px 0 0}
+/* titulo no mesmo tratamento do "Nossos Lideres" da propria home:
+   branco-azulado #e9f0ff, display grande, alinhado a esquerda */
+.onda18-orbe__titulo{color:#e9f0ff;font-size:clamp(32px,19.7px + 3.16vw,64px);font-weight:700;line-height:1.05;
+  margin:0 0 30px;text-align:left}
+.onda18-orbe__cards{display:grid;grid-template-columns:repeat(3,1fr);/* onda42 (#194): 6 cards em 2 fileiras de 3; era repeat(5) p/ 5 cards */gap:16px;
+  list-style:none;margin:0;padding:0}
+.onda18-const{background:#020E66;border-top:3px solid #00ADEC;
+  padding:20px 18px 22px;display:flex;flex-direction:column;
+  transition:transform 220ms ease,box-shadow 220ms ease}
+@media (hover:hover) and (pointer:fine){.onda18-const:hover{transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(2,14,102,.28)}}
+/* S-134 (#198, 10/08): 17px/14px -> 18px, o tamanho do subtitulo do hero
+   ("Focamos em estrategia..."); o bullet desce de 7 p/ 9px pro novo centro */
+.onda18-const__nome{display:block;color:#fff;font-size:18px;font-weight:700;
+  line-height:1.25;margin:0 0 14px;padding:0 0 12px;
+  border-bottom:1px solid rgba(0,173,236,.45)}
+.onda18-const__lista{list-style:none;margin:0;padding:0}
+.onda18-const__item{position:relative;padding-left:16px;margin:0 0 8px;
+  color:#fff;font-size:18px;font-weight:400;line-height:1.35}
+.onda18-const__item:last-child{margin-bottom:0}
+.onda18-const__item::before{content:"";position:absolute;left:0;top:9px;
+  width:6px;height:6px;background:#00ADEC}
+@media only screen and (max-width: 1200px){
+  .onda18-orbe__cards{grid-template-columns:repeat(3,1fr)}
+}
+@media only screen and (max-width: 991px){
+  /* onda66: o 44px de <=991 saiu — o clamp de .onda18-orbe__titulo da 44,0 em 768px */
+}
+@media only screen and (max-width: 767px){
+  .onda18-orbe__titulo{margin-bottom:20px}
+  .onda18-orbe__cards{grid-template-columns:1fr;gap:12px}
+}
+/* onda18:planeta-setores:fim */
+
+/* onda18:hero-numeros-s73:ini */
+/* ---- S-73: pilha de numeros na tipografia do hero ----------------------
+   O tema define o slogan em 62px (.banner h2) e o paragrafo em 18px (.banner p);
+   a pilha estava em 40px/14px. Agora usa os MESMOS tamanhos. A coluna alarga
+   junto, senao o texto de 18px passa de 2 linhas (assercao V07). */
+@media only screen and (min-width: 1200px){
+  /* onda37: 400 -> 420. Com 400 a legenda "der Projekte werden fuer Kunden mit
+     einem Jahresumsatz..." (de/) ia a 3 LINHAS em 1400px — defeito que estava no ar
+     e a V07 nao pegava, porque ela testava so pt/ em 1920. 420px e o minimo medido
+     que mantem os 4 idiomas em <=2 linhas. */
+  .hero-numeros{gap:14px;width:420px}
+  .hero-numeros__valor{font-size:62px !important;line-height:1}
+  .hero-numeros__texto{font-size:18px !important;line-height:1.35;margin-top:6px}
+}
+/* o @media 1440px da onda18 (width:440px) saiu na onda 39: medido, o 370/420 do
+   breakpoint de 1200 serve ate 1920px+ com as legendas em 2 linhas. Ver V23. */
+/* viewport baixo: a onda 10 encolhia a pilha (33px/13px). O pedido do Mario e
+   igualar ao hero, entao aqui o tamanho fica, e o que cede e o espacamento. */
+@media only screen and (min-width: 1200px) and (max-height: 820px){
+  .hero-numeros{gap:8px}
+  .hero-numeros__valor{font-size:62px !important}
+  .hero-numeros__texto{font-size:18px !important}
+}
+/* onda18:hero-numeros-s73:fim */
+
+/* onda19:lateral-e-idiomas:ini */
+/* ---- S-74: as 3 linguas do rodape aparecem inteiras ---------------------
+   Nao era overflow: o rodape nao tinha contexto de empilhamento proprio e a
+   secao anterior pintava por cima da lista que a S-52 fez abrir para cima. */
+.footer{position:relative;z-index:20}
+.rodape-barra .menu__languages{z-index:30}
+.rodape-barra .menu__languages-list{z-index:40}
+
+/* ---- S-76: coluna fixa de acoes na lateral direita ---------------------- */
+.onda19-lateral{position:fixed;right:22px;bottom:34px;z-index:900;
+  display:flex;flex-direction:column;gap:12px;align-items:center}
+.onda19-lateral__link{width:52px;height:52px;display:flex;align-items:center;
+  justify-content:center;border-radius:50%;text-decoration:none;
+  background:#020E66;border:2px solid #00ADEC;color:#fff;
+  box-shadow:0 4px 14px rgba(2,14,102,.28);
+  transition:background 200ms ease,color 200ms ease,border-color 200ms ease}
+.onda19-lateral__link svg{width:22px;height:22px;display:block}
+.onda19-lateral__link:hover,.onda19-lateral__link:focus-visible{
+  background:#00ADEC;color:#020E66}
+.onda19-lateral__link--wa:hover,.onda19-lateral__link--wa:focus-visible{
+  background:#25D366;border-color:#25D366;color:#fff}
+/* o de subir so aparece depois de rolar (herda o comportamento da S-51) */
+.onda19-lateral__link--topo{opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity 220ms ease,transform 220ms ease,visibility 220ms ease,
+    background 200ms ease,color 200ms ease}
+.onda19-lateral__link--topo.is-visivel{opacity:1;visibility:visible;transform:none}
+@media only screen and (max-width: 767px){
+  .onda19-lateral{right:12px;bottom:16px;gap:9px}
+  .onda19-lateral__link{width:44px;height:44px}
+  .onda19-lateral__link svg{width:19px;height:19px}
+}
+@media print{.onda19-lateral{display:none}}
+/* onda19:lateral-e-idiomas:fim */
+
+/* onda21:menus-bain:ini */
+/* ---- S-83 + S-80: o painel do menu no modelo da barra da Bain -----------
+   Painel BRANCO (contrasta com qualquer fundo e combina com a barra do topo, que
+   ja fica branca no hover), titulo grande em cima, itens em GRADE ocupando a
+   largura util, e um filete ciano fechando embaixo. */
+/* ATENCAO: o branco vai no >div INTERNO. O tema pinta
+   `.menu__nav-submenu>div{background:url(texture-7.png),#020e66}` — pintar so o
+   pai deixava esse div navy por cima do branco, e o texto navy sumia. */
+.menu__nav-submenu{background:transparent !important}
+.menu__nav-submenu>div{background:#fff !important;padding:26px 0 30px !important;
+  box-shadow:0 20px 44px rgba(2,14,102,.20);border-bottom:3px solid #00ADEC}
+.menu__nav-submenu h5{color:#020E66 !important;font-size:21px;font-weight:700;
+  margin:0 0 18px}
+.menu__nav-sublink{color:#020E66 !important;font-weight:400}
+.menu__nav-sublink:hover,.menu__nav-sublink:focus-visible{color:#00ADEC !important}
+
+/* Largura do painel — duas camadas, as duas necessarias (medido via CDP):
+   dentro do submenu, o .container do tema e flex, entao o .row e um FLEX ITEM e
+   encolhia no conteudo; e o .col, dentro do .row, tambem. Sem os dois, a grade
+   ficava agrupada a esquerda em vez de ocupar a largura util. */
+.menu__nav-submenu .container>.row{flex:1 1 100%;width:100%}
+.menu__nav-submenu .row>.col{flex:0 0 100%;width:100%;max-width:100%}
+/* Sobre nos: os 5 itens espalhados no width, como o painel da Bain */
+.menu__nav-sublinks:not(.onda18-praticas){display:grid;
+  grid-template-columns:repeat(5,max-content);justify-content:space-between;
+  gap:2px 24px}
+.menu__nav-sublinks:not(.onda18-praticas) .menu__nav-sublink{font-size:19px !important}
+
+/* Praticas: 3 colunas iguais ocupando o width, divididas por linha cinza
+   (o "|" da S-65 vira o divisor da coluna — e o que faz ocupar a caixa toda) */
+/* S-88: colunas do tamanho do conteudo e espalhadas — com 3 colunas iguais,
+   "Sourcing, Compras e Estoques" nao cabia e quebrava em 2 linhas. */
+.menu__nav-sublinks.onda18-praticas{display:grid !important;
+  grid-template-columns:repeat(3,max-content);justify-content:space-between;
+  gap:0;align-items:center}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublink{white-space:nowrap}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem{margin:0;padding:0 24px}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem{
+  border-left:1px solid rgba(127,127,127,.55)}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem:first-child{padding-left:0}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem::before{
+  content:none}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:26px !important;
+  font-weight:700;line-height:1.2;display:block}
+@media only screen and (max-width: 1440px){
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:22px !important}
+}
+@media only screen and (max-width: 1200px){
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:19px !important}
+}
+
+/* ---- S-90: o balao de idiomas no navy Mirow, nao mais preto -------------- */
+.menu__languages-list{background:#020E66 !important;
+  box-shadow:0 14px 30px rgba(2,14,102,.32)}
+/* a setinha do balao acompanha (no header aponta para cima; no rodape, S-52,
+   ela e invertida e vira border-top) */
+.menu__languages-list::after{border-bottom-color:#020E66 !important}
+.rodape-barra .menu__languages-list::after{border-top-color:#020E66 !important}
+.menu__languages-list li a{color:#fff !important}
+@media (hover:hover) and (pointer:fine){.menu__languages-list li:not(.menu__languages-list-current) a:hover{
+  color:#00ADEC !important}}
+.menu__languages-list li.menu__languages-list-current a{color:#00ADEC !important}
+
+/* ---- S-79: a barra do rodape sangra 100vw, como a de cima ---------------- */
+.rodape-barra{width:100vw;margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;padding-left:0;padding-right:0}
+.rodape-barra .menu{padding-left:0;padding-right:0}
+
+/* no mobile o menu do tema e lista empilhada — a grade volta a coluna */
+@media only screen and (max-width: 991px){
+  .menu__nav-sublinks:not(.onda18-praticas),
+  .menu__nav-sublinks.onda18-praticas{display:block !important}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem{padding:0}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem{
+    border-left:0}
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:19px !important;
+    white-space:normal}
+}
+/* onda21:menus-bain:fim */
+
+
+/* onda22:marca-secoes:ini */
+/* ---- S-85 + S-86: a marca de secao como framework da home ---------------
+   Nasceu do glifo que o tema desenhava ao lado de "PRATICAS"
+   (.home-experience__title::after + ::before). Na v2 (S-86) e uma GRADE 2x2 de
+   quatro blocos: o bloco do quadrante da secao fica maior e opaco, os outros
+   tres pequenos e esmaecidos — "voce esta aqui" no mapa da home.
+       [1] [2]     1 expertise   2 setores
+       [3] [4]     3 lideres     4 reconhecimentos
+   Navy fixo (#020E66) e float:left, a pedido: nos blocos de fundo escuro o
+   marcador fica discreto de proposito.
+   ATENCAO (S-110, onda 30): a tipografia dos 4 titulos NAO mora mais aqui — ela
+   e da classe .onda30-titulo-secao. Nao reintroduzir regra por seletor. */
+.onda22-marca{float:left;display:grid;
+  grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);
+  gap:4px;width:26px;height:26px;margin:12px 14px 0 0}
+.onda22-marca i{align-self:center;justify-self:center;
+  width:7px;height:7px;background:#020E66;opacity:.42}
+/* o quadrante da secao: um pouco maior e opaco — e o "voce esta aqui" */
+.onda22-marca--1 i:nth-child(1),
+.onda22-marca--2 i:nth-child(2),
+.onda22-marca--3 i:nth-child(3),
+.onda22-marca--4 i:nth-child(4){width:12px;height:12px;opacity:1}
+
+/* S-91: o "darken" ao rolar sai de cena. Como o tema fazia:
+   `.home-experience::after` e um VEU CLARO (#A2BAE4) por cima da secao, e
+   `.home-experience--dark-mode::after{opacity:0}` tirava o veu ao rolar — dai o
+   fundo escurecer e o titulo navy sumir (era a S-87). Mantendo o veu sempre
+   opaco, o fundo fica claro e o navy da classe funciona nos quatro blocos. */
+.home-experience--dark-mode::after{opacity:1 !important}
+/* o titulo de Reconhecimentos tinha uma linha decorativa que estica ao lado */
+.certificates h2::after{display:none !important}
+
+/* ---- textos que saem: "Praticas" e o super titulo "Lideres" -------------- */
+.home-experience__title,.home-leaders__title{display:none !important}
+/* sem a marca d'agua de 335px, a grade dos lideres sobe */
+.home-leaders .container .row__titles{padding-top:0}
+
+@media only screen and (max-width: 991px){
+  .onda22-marca{width:22px;height:22px;gap:3px;margin:8px 12px 0 0}
+  .onda22-marca i{width:6px;height:6px}
+  .onda22-marca--1 i:nth-child(1),.onda22-marca--2 i:nth-child(2),
+  .onda22-marca--3 i:nth-child(3),.onda22-marca--4 i:nth-child(4){
+    width:10px;height:10px}
+}
+/* onda22:marca-secoes:fim */
+
+/* onda25:peso-submenu:ini */
+/* ---- S-94: mesmo peso nos dois submenus -------------------------------
+   Praticas estava em 700 e Sobre nos em 400. Agora os dois em 600. O TAMANHO
+   segue diferente de proposito (26px x 19px): Praticas sao 3 palavras em
+   vitrine, Sobre nos e lista de 5 itens — o pedido era sobre negrito. */
+.menu__nav-sublink{font-weight:600 !important}
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-weight:600 !important}
+/* onda25:peso-submenu:fim */
+
+/* onda26:fonte-unica:ini */
+/* ---- S-98: UMA fonte em todo o site ------------------------------------
+   O tema pedia Archivo/Libre Franklin/Roboto Serif por variavel, mas nenhuma
+   das tres e carregada em nenhuma das 275 paginas — so o Titillium Web esta no
+   <head>. As variaveis passam a apontar para ela; assim as ~130 regras do tema
+   que usam var(--fontFamily)/var(--secondaryFontFamily) continuam valendo e
+   convergem para a mesma familia. */
+:root{
+  --fontFamily:"Titillium Web",sans-serif;
+  --secondaryFontFamily:"Titillium Web",sans-serif;
+  --secondaryfontFamily:"Titillium Web",sans-serif; /* typo que existe no CSS do tema */
+  --tertiaryFontFamily:"Titillium Web",sans-serif;
+  --bs-font-sans-serif:"Titillium Web",sans-serif;
+  --bs-body-font-family:"Titillium Web",sans-serif;
+}
+body,html,button,input,optgroup,select,textarea{font-family:"Titillium Web",sans-serif}
+/* o widget "chosen" e o unico lugar do tema que nomeia sans-serif na mao */
+.chosen-container-single .chosen-search input[type=text],
+.chosen-container-multi .chosen-choices li.search-field input[type=text]{
+  font-family:"Titillium Web",sans-serif}
+/* onda26:fonte-unica:fim */
+
+/* onda26:ajustes-s97-s100:ini */
+/* ---- S-97: "Ver todos os lideres" em azul ------------------------------
+   Era branco (onda 7, quando a secao era escura). Depois da S-91 o fundo ficou
+   claro — navy e o que le. */
+.onda7-vertodos{color:#020E66 !important}
+.onda7-vertodos:hover,.onda7-vertodos:focus-visible{color:#00ADEC !important}
+
+/* ---- S-99: Praticas no mesmo tamanho de Sobre nos (19px) ---------------
+   Revoga o tamanho maior da S-65/S-88 (26px no desktop). Vale em toda a
+   largura, no header e no rodape. */
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublink,
+.menu__nav-sublinks:not(.onda18-praticas) .menu__nav-sublink{
+  font-size:19px !important}
+@media only screen and (max-width: 1440px){
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:19px !important}
+}
+@media only screen and (max-width: 1200px){
+  .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{font-size:19px !important}
+}
+/* o "|" que separa as praticas acompanha o texto menor */
+.menu__nav-sublinks.onda18-praticas .menu__nav-sublinkitem+.menu__nav-sublinkitem::before{
+  font-size:19px}
+
+/* ---- S-100: nada separando a politica de privacidade da barra ---------- */
+.rodape-barra{border-bottom:0 !important}
+/* onda26:ajustes-s97-s100:fim */
+
+/* onda26:imprensa-linha:ini */
+/* ---- S-102: a linha inteira e o link ----------------------------------
+   O grid sai do <li> e vai para o <a> que agora envolve a linha toda: assim
+   clicar no logo, no veiculo ou na data abre o artigo, e existe UM link por
+   linha (nao dois sobrepostos) — o leitor de tela anuncia uma vez, o Tab para
+   uma vez. */
+.onda18-imprensa__item{display:block;padding:0}
+.onda26-imprensa__link{display:grid;
+  grid-template-columns:34px minmax(150px,190px) 108px 1fr;
+  align-items:center;gap:0 18px;padding:16px 22px;
+  text-decoration:none;color:inherit}
+.onda26-imprensa__link:focus-visible{outline:2px solid #00ADEC;outline-offset:-2px}
+@media (hover:hover) and (pointer:fine){.onda18-imprensa__item:hover .onda18-imprensa__titulo{color:#00ADEC;
+  border-bottom-color:#00ADEC}}
+@media only screen and (max-width: 991px){
+  .onda26-imprensa__link{grid-template-columns:28px 1fr;gap:6px 14px;
+    padding:14px 16px}
+}
+/* onda26:imprensa-linha:fim */
+
+/* onda26:lider-mail:ini */
+/* ---- S-101: e-mail no card de lider da home ---------------------------
+   O card e um <button> (modal da bio), entao o link mora no wrapper e se
+   sobrepoe — mesmo padrao do icone do LinkedIn da S-50. Fica a esquerda dele. */
+.onda26-lider__mail{position:absolute;right:35px;bottom:0;width:35px;height:35px;
+  z-index:3;display:flex;align-items:center;justify-content:center;
+  color:#0E41A7;border-radius:3px;transition:background 200ms ease,color 200ms ease}
+.onda26-lider__mail:hover,.onda26-lider__mail:focus-visible{
+  background:rgba(0,173,236,.22);color:#00ADEC;outline:none}
+.onda26-lider__mail svg{display:block}
+/* no mobile o card estreita (45% da largura) e o cargo chegava a passar por
+   baixo do envelope — "Managing Partne✉". Reserva a faixa dos dois icones. */
+@media only screen and (max-width: 991px){
+  .onda26-lider--mail .home-leaders__card span p{padding-right:74px;
+    box-sizing:border-box}
+}
+/* onda26:lider-mail:fim */
+
+/* onda27:barra-igual:ini */
+/* ---- S-105: a MESMA barra em toda pagina --------------------------------
+   O HTML da barra sempre foi identico nas 275 paginas (mesmos itens, 4 canais,
+   seletor de idiomas, 98px). O que mudava era o FUNDO: o tema a deixa
+   transparente (`.menu{background:rgba(0,0,0,0)}`), entao ela exibia o que
+   estivesse atras — hero navy na home, FOTO nas internas, gradiente claro nas 26
+   paginas sem banner. Agora o repouso e navy solido em todas.
+   O hover branco (que casa com o painel branco do menu, S-83) continua: precisa
+   de seletor mais especifico para vencer a regra de repouso. */
+.header .menu{background:#020E66 !important;
+  transition:background 300ms ease-in-out}
+@media (hover:hover) and (pointer:fine){/* onda64 (19/08): o hover branco so onde existe ponteiro de verdade. Em tela
+   de toque o :hover GRUDA depois do tap -- o Mario abriu o menu pelo hamburguer,
+   fechou, e a barra ficou branca com o logo branco por cima. Reproduzido no
+   navegador: a classe menu--mobile-opened sai certo ao fechar; quem pintava era
+   o :hover. `(hover:hover) and (pointer:fine)` e a condicao que a regra sempre
+   pressupos, agora escrita. O menu ABERTO segue branco em qualquer aparelho,
+   porque ali o painel e branco mesmo. */
+.header .menu.menu--mobile-opened{background:#fff !important}}
+@media (hover:hover) and (pointer:fine){
+  .header .menu:hover{background:#fff !important}
+}
+/* o clone do rodape mora sobre o navy do footer: mesma cor, sem costura */
+.rodape-barra .menu{background:#020E66 !important}
+@media (hover:hover) and (pointer:fine){
+  .rodape-barra .menu:hover{background:#fff !important}
+}
+/* onda27:barra-igual:fim */
+
+/* onda28:painel-mesma-altura:ini */
+/* ---- S-109: os dois paineis de submenu com a MESMA altura ---------------
+   "Sobre nos" media 159px e "Praticas" 129px: a lista do primeiro herdava
+   margin-top:40px do tema e a do segundo levava 6px da S-65, e o padding do link
+   era 6px x 2px. Aqui os dois lados usam os mesmos numeros — o resto (fonte de
+   19px da S-99, divisor cinza da S-65) fica como esta. */
+.menu__nav-submenu .menu__nav-sublinks,
+.menu__nav-submenu .menu__nav-sublinks.onda18-praticas,
+.menu__nav-submenu .menu__nav-sublinks:not(.onda18-praticas){
+  margin:18px 0 0 !important}
+.menu__nav-submenu .menu__nav-sublink,
+.menu__nav-submenu .menu__nav-sublinks.onda18-praticas .menu__nav-sublink{
+  padding:4px 0 !important;line-height:1.2 !important}
+/* no mobile o menu do tema e lista empilhada: cada item respira igual */
+@media only screen and (max-width: 991px){
+  .menu__nav-submenu .menu__nav-sublinks,
+  .menu__nav-submenu .menu__nav-sublinks.onda18-praticas{margin:10px 0 0 !important}
+}
+/* onda28:painel-mesma-altura:fim */
+
+/* onda29:abertura-padrao:ini */
+/* ---- S-108: faixa de abertura das paginas sem banner --------------------
+   Imprensa e politica de privacidade abriam com o titulo nu sobre o gradiente,
+   enquanto toda pagina interna abre com uma faixa. Aqui a faixa existe sem foto:
+   navy solido e a MESMA tipografia do `.internal-banner` do tema (62px/22px),
+   para o ritmo ser o mesmo sem inventar imagem. */
+.onda29-abertura{background:#020E66;padding:150px 0 70px;position:relative}
+.onda29-abertura__titulo{color:#fff;font-family:var(--fontFamily);
+  font-size:clamp(40px,12.2px + 3.55vw,62px);font-weight:700;line-height:1.1;margin:0}
+.onda29-abertura__apoio{color:#fff;font-family:var(--secondaryFontFamily);
+  font-size:clamp(18px,14.6px + 0.53vw,22px);font-weight:400;line-height:1.4;margin:14px 0 0;max-width:60ch}
+/* o conteudo que segue nao precisa mais do respiro que compensava a falta da faixa */
+.onda29-abertura + .page-default,
+.onda29-abertura + div .page-default{padding-top:60px}
+@media only screen and (max-width: 991px){
+  .onda29-abertura{padding:110px 0 50px}
+  /* onda66: o 40px de <=991 virou o PISO do clamp em .onda29-abertura__titulo */
+  /* onda66: o 18px de <=991 virou o PISO do clamp em .onda29-abertura__apoio */
+}
+/* onda29:abertura-padrao:fim */
+
+/* onda30:titulo-secao:ini */
+/* ---- S-110: UMA classe para os 4 titulos de secao da home ---------------
+   Antes, tamanho/peso/cor viviam numa regra com os quatro seletores lado a lado
+   (S-85) e a animacao dependia de cada HTML — o titulo de Setores, que nasceu na
+   onda 18 fora do tema, ficou sem `data-aos` e nao animava. Agora ha UMA fonte de
+   verdade: esta classe. Quem tem estilo proprio de secao (a marca 2x2, o veu, a
+   linha do Reconhecimentos) segue no bloco da onda 22 — o que NAO se repete mais
+   aqui e tipografia. */
+.onda30-titulo-secao{
+  font-family:var(--fontFamily),Arial,sans-serif !important;
+  font-size:clamp(28px,17.6px + 2.17vw,48px) !important;font-weight:700 !important;line-height:1.1 !important;
+  letter-spacing:normal !important;text-transform:none !important;
+  text-align:left !important;margin:0 0 28px !important;
+  color:#020E66 !important}
+/* o link do titulo dos lideres (onda 7) herda tudo da classe */
+.onda30-titulo-secao .onda7-titulo-link{color:inherit;font-size:inherit;
+  font-family:inherit;font-weight:inherit}
+@media only screen and (max-width: 991px){
+  .onda30-titulo-secao{margin-bottom:22px !important}
+}
+@media only screen and (max-width: 767px){
+  /* onda66: o 28px de <=767 virou o PISO do clamp em .onda30-titulo-secao */
+}
+/* onda30:titulo-secao:fim */
+
+/* onda31:rede:ini */
+/* ---- S-111 a S-116: a Nossa Rede com mapa de verdade ---------------------
+   Mapas: SVG gerado do Natural Earth (dominio publico) em projecao Mercator, um
+   recorte por mapa. O `aspect-ratio` de cada palco vem do proprio recorte, entao o
+   mapa PREENCHE a caixa (S-114) — antes o SVG da Europa tinha proporcao fixa e
+   sobrava faixa vazia.
+   Pins: chip branco com o logo do parceiro (S-111/S-115, no lugar do favicon de
+   128px) e uma AGULHA que marca o ponto exato da cidade (S-116). O chip pode se
+   afastar lateralmente (--desvio) quando dois parceiros dividem a cidade — a agulha
+   fica onde a projecao mandou. */
+.onda31-rede{display:grid;grid-template-columns:repeat(2,1fr);gap:34px;margin:26px 0 0}
+.onda31-mapa__nome{display:block;color:#fff;font-size:15px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.onda31-mapa__palco{position:relative;width:100%;
+  background:rgba(2,14,102,.28);border:1px solid rgba(170,213,232,.30);border-radius:3px;
+  overflow:hidden}
+.onda31-mapa__svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.onda31-mapa__pins{position:absolute;inset:0}
+
+.onda31-pin{position:absolute;width:0;height:0}
+/* a agulha: 8px de ponto no lugar exato + haste subindo ate o chip */
+.onda31-pin__agulha{position:absolute;left:-4px;top:-4px;width:8px;height:8px;
+  border-radius:50%;background:#00ADEC;box-shadow:0 0 0 3px rgba(0,173,236,.28)}
+/* o chip e CENTRADO no deslocamento que o gerador calculou — pode estar acima,
+   ao lado ou abaixo do ponto (S-117), o que importa e ser o lugar livre mais
+   proximo da cidade */
+.onda31-pin__corpo{position:absolute;left:0;top:0;
+  transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,-40px)))}
+.onda31-pin__chip{display:block;padding:8px 12px;border:0;cursor:pointer;
+  background:#fff;border-radius:4px;box-shadow:0 6px 18px rgba(2,14,102,.34);
+  transition:transform 200ms ease,box-shadow 200ms ease}
+.onda31-pin__chip img{display:block;height:26px;width:auto;max-width:132px;
+  object-fit:contain}
+.onda31-pin__chip:hover,.onda31-pin__chip:focus-visible{outline:none;
+  transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,173,236,.45)}
+/* haste ligando o ponto da cidade ao chip: nasce NO ponto e gira o quanto o
+   gerador calculou (atan2 do desvio pelo quanto subiu), entao o chip pode sair do
+   eixo sem a linha desgrudar dele */
+.onda31-pin__haste{position:absolute;left:0;bottom:0;width:1px;
+  height:var(--len,12px);transform-origin:bottom center;
+  transform:rotate(var(--ang,0deg));background:rgba(0,173,236,.85)}
+
+.onda31-pin__card{position:absolute;left:50%;bottom:calc(100% + 10px);
+  transform:translateX(-50%) translateY(6px);width:230px;padding:14px 16px;
+  background:#fff;border-radius:4px;box-shadow:0 16px 34px rgba(2,14,102,.34);
+  opacity:0;visibility:hidden;transition:all 220ms ease;z-index:6}
+.onda31-pin:hover .onda31-pin__card,
+.onda31-pin__chip:focus-visible + .onda31-pin__card,
+.onda31-pin__card:hover{opacity:1;visibility:visible;transform:translateX(-50%)}
+.onda31-pin__nome{color:#020E66;font-size:16px;font-weight:700;margin:0 0 2px}
+.onda31-pin__local{color:#4A4A4A;font-size:14px;margin:0 0 8px}
+.onda31-pin__link{color:#00ADEC;font-size:14px;font-weight:700;text-decoration:none}
+@media (hover:hover) and (pointer:fine){.onda31-pin__link:hover{text-decoration:underline}}
+@media (hover:hover) and (pointer:fine){/* o pin com hover sobe na pilha, senao o card fica atras do chip vizinho */
+.onda31-pin:hover{z-index:7}}
+
+.onda31-nota{color:#fff;opacity:.82;font-size:15px;margin:6px 0 0}
+
+@media only screen and (max-width: 991px){
+  .onda31-rede{grid-template-columns:1fr;gap:26px}
+  .onda31-pin__chip{padding:6px 9px}
+  .onda31-pin__chip img{height:20px;max-width:104px}
+  .onda31-pin__card{width:200px}
+}
+/* onda31:rede:fim */
+
+/* onda36:logo-frente:ini */
+/* ---- S-127 (#180): o "m" do hero solido e NA FRENTE ---------------------
+   Pedido do Mario (05/08): "quero que o M da pagina inicial nao seja
+   transparente, seja branco solido e 'na frente' de tudo que estiver atras".
+   z-index 10 = na frente dos cards do hero (.hero-numeros e o convite estao em
+   z=4) e atras do header (z=20), que precisa seguir clicavel por cima.
+   pointer-events:none para o logo nao roubar clique de nada.
+   left/top/width vem do JS (onda17-horizonte.js), que os calcula do centro do
+   vao entre os cards e do horizonte — o mesmo ponto de onde as linhas saem. */
+.hero-logo-m{position:absolute;z-index:10;display:none;pointer-events:none;
+  transform:translate(-50%,-50%);overflow:visible}
+.hero-logo-m path{fill:#fff}
+/* onda36:logo-frente:fim */
+
+/* onda39:respiro-hero:ini */
+/* ---- S-130 (#183): tres acertos de respiro no hero -----------------------
+   Pedidos do Mario (05/08), depois de ver o hero publicado:
+   "card a esquerda pode ter whatsapp/email na linha de cima e linkedin/instagram
+    na linha de baixo. card na direita pode ser um pouco mais apertado (ve o
+    espaco entre sua borda e o texto 'dos projetos realizados em clientes...'?
+    sobra muito. alem disso, a imagem no fundo pode se expandir um pouco mais,
+    pois o espaco entre 'Exemplos de empresas que confiam...' e a borda superior
+    esta grande - pode diminuir um pouco."
+
+   1) PILULAS 2+2. Eram flex-wrap, e com o card em 580px (onda 37) caiam 3+1 em
+      pt/en e 2+2 em de/ — o alemao acertava por acidente, porque os rotulos sao
+      mais longos. Grid de 2 colunas torna o 2+2 deliberado nos 4 idiomas.
+      `max-content` mantem cada pilula do tamanho do seu texto (nao esticadas).
+   2) CARD DA DIREITA por idioma. Medido: pt/en mantem as legendas em 2 linhas
+      com 370px; o alemao precisa de 420px ("der Projekte werden fuer Kunden mit
+      einem Jahresumsatz..."). Um numero unico servia o pior caso e deixava 71px
+      sobrando em pt. Agora cada idioma tem a largura JUSTA dele — e o vao central
+      cresce em pt/en, o que o M aproveita sozinho (ele e fracao do vao). */
+/* O grid de 2 colunas da onda 39 SAIU na onda 40: ele resolvia o 2+2, mas as duas
+   colunas compartilham largura, entao a coluna 1 ficava do tamanho de "Falar no
+   WhatsApp" e o Instagram comecava naquela borda — alinhado com o "E-mail" e longe
+   do "LinkedIn". O Mario pediu o contrario. O 2+2 agora vem de flex-wrap + um item
+   de quebra (bloco onda40:quebra-pilulas), que empacota com o gap normal. */
+@media only screen and (min-width: 1200px){
+  .hero-numeros{width:370px}
+  html[lang^="de"] .hero-numeros{width:420px}
+}
+/* Nao ha breakpoint de 1440px aqui de proposito. A onda 18 tinha um (440px) e a
+   onda 39 chegou a repetir o padrao (390/440), mas medido em 1920px o 370/420 do
+   breakpoint de 1200 mantem as legendas em 2 linhas nos 4 idiomas com sobra de
+   16-21px — o override so alargava o card sem necessidade. A V23 pegou isso: ela
+   cobrava sobra <= 30px e acusou 36-41px em 1920px. Uma largura por idioma, ponto. */
+/* onda39:respiro-hero:fim */
+
+/* onda40:quebra-pilulas:ini */
+/* ---- S-131 (#184): Instagram junto do LinkedIn, nao alinhado ao E-mail --------
+   Pedido do Mario (05/08): "instagram deve ficar mais proximo de linkedin, nao
+   necessariamente paralelo com o item `email`".
+
+   A lista volta ao flex-wrap do tema (que empacota vizinho a vizinho com o gap
+   normal) e o 2+2 vem de um ITEM DE QUEBRA de largura total e altura zero,
+   inserido depois da 2a pilula por tools_onda6/93_quebra_pilulas_contato.py.
+
+   Diferenca em relacao ao grid da onda 39: no grid as colunas compartilhavam
+   largura e empurravam o Instagram para a borda da coluna do WhatsApp. Aqui cada
+   fileira se resolve sozinha — o Instagram fica a um gap do LinkedIn. */
+.hero-contatos__quebra{
+  flex-basis:100%;
+  width:100%;
+  height:0;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+/* abaixo de 992px o card ocupa a largura toda e o empacotamento natural do tema
+   ja resolve; a quebra continua valendo e nao atrapalha (altura zero). */
+/* onda40:quebra-pilulas:fim */
+
+/* onda41:titulo-lideres-mobile:ini */
+/* S-134: o tema esconde o titulo da secao de lideres abaixo de 992px
+   (display:none em .home-leaders__subtitle — MEDIDO: some de 320 a 991px,
+   volta em 992) e a secao abre sem titulo. Devolve o display na faixa toda;
+   tamanho/cor vem da .onda30-titulo-secao. */
+@media only screen and (max-width: 991px){
+  .home-leaders .home-leaders__subtitle{display:block !important}
+}
+/* onda41:titulo-lideres-mobile:fim */
+
+/* onda41:imprensa-logos:ini */
+/* ---- S-136 (#190): logo grande do veiculo a esquerda ------------------
+   O grid do link (S-102) deixa de ser [icone|veiculo|data|titulo] numa linha
+   e vira duas colunas: o logo ocupa a coluna esquerda inteira (destaque ao
+   veiculo, pedido do Mario 06/08) e o conteudo empilha a direita. Os filhos
+   do <a> sao os mesmos 4 — so as areas mudam. */
+.onda26-imprensa__link{grid-template-columns:200px max-content 1fr;
+  grid-template-areas:"logo veiculo data" "logo titulo titulo";
+  align-items:center;gap:4px 26px;padding:20px 22px}
+.onda41-imprensa__logo{grid-area:logo;justify-self:start;align-self:center;
+  display:block;width:auto;height:auto;max-width:176px;max-height:52px;
+  object-fit:contain;background:none;border-radius:0;padding:0}
+.onda41-imprensa__logo--texto{font-weight:900;font-size:clamp(19px,12.9px + 0.79vw,24px);line-height:1.1;
+  color:#020E66;letter-spacing:.01em}
+.onda18-imprensa__veiculo{grid-area:veiculo;font-size:13px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#7F7F7F}
+.onda18-imprensa__data{grid-area:data;font-size:13px}
+.onda18-imprensa__titulo{grid-area:titulo;font-size:17px}
+@media only screen and (max-width: 991px){
+  .onda26-imprensa__link{grid-template-columns:132px 1fr;
+    grid-template-areas:"logo veiculo" "logo data" "titulo titulo";
+    gap:2px 16px;padding:16px 16px}
+  .onda41-imprensa__logo{max-width:116px;max-height:40px}
+  /* onda66: o 19px de <=991 virou o PISO do clamp em .onda41-imprensa__logo--texto */
+  .onda18-imprensa__data{grid-column:auto}
+  .onda18-imprensa__titulo{grid-column:1 / -1;margin-top:8px}
+}
+/* onda41:imprensa-logos:fim */
+
+/* onda42:header-fixo:ini */
+/* S-137 (#191): barra superior sempre visivel no scroll.
+   FIXED, nao sticky: o tema ja desenha o header FORA do fluxo
+   (.header{position:absolute;top:0} — ele sobrepoe o hero). Sticky o poria
+   NO fluxo e empurraria a primeira dobra em 98px (foi o que a V01 pegou).
+   Fixed mantem exatamente a geometria de carga e so muda o comportamento
+   no scroll. O tema tambem esconde o header rolado (opacity:0 via JS de
+   scroll) — os overrides abaixo mantem a barra visivel e clicavel. */
+.header{position:fixed !important;top:0;left:0;right:0;z-index:90;
+  opacity:1 !important;pointer-events:auto !important;
+  transform:none !important;visibility:visible !important}
+/* onda42:header-fixo:fim */
+
+/* onda43:texto-expertise:ini */
+/* S-134 (#198, 10/08): texto dos cards de expertise = subtitulo do hero (18px).
+   O tema dava 14px a ambos (paragrafo e "Conheca a pratica"). */
+.praticas-3__card .home-experience__list-item-content p,
+.praticas-3__card .home-experience__list-item-more{font-size:18px}
+/* onda43:texto-expertise:fim */
+
+/* onda45:carreiras-form:ini (#202/#203 — form de candidatura -> AWS; cartao claro sobre o fundo escuro) */
+/* O form vive numa secao de fundo navy: renderiza como CARTAO CLARO para legibilidade. */
+.mc-form{background:#fff;border-radius:14px;padding:30px 32px;box-shadow:0 18px 44px rgba(2,14,102,.28);color:#0f2933}
+@media(max-width:640px){.mc-form{padding:22px 18px}}
+.mc-form__intro{font-size:15px;line-height:1.5;color:#3a4a54;margin:0 0 22px}
+.mc-form__intro .mc-star{color:#d23f31;font-weight:700}
+.mc-fieldset{border:0;padding:0;margin:0 0 26px;min-width:0}
+.mc-fieldset legend{font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:16px;color:#020E66;margin:0 0 14px;padding:0 0 8px;border-bottom:2px solid #00ADEC;width:100%;line-height:1.4}
+.mc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+@media(max-width:640px){.mc-grid{grid-template-columns:1fr}}
+.mc-field{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.mc-field>span{font-weight:700;color:#12333f}
+.mc-field.mc-req>span::after{content:" *";color:#d23f31}
+.mc-field input,.mc-field select{font-family:Arial,Helvetica,sans-serif;font-size:15px;padding:11px 12px;border:1.5px solid #b8c6d0;border-radius:7px;background:#fff;color:#071C25;width:100%}
+.mc-field input::placeholder{color:#8aa0ac}
+@media (hover:hover) and (pointer:fine){.mc-field input:hover,.mc-field select:hover{border-color:#7fa8bd}}
+.mc-field input:focus,.mc-field select:focus{outline:none;border-color:#00ADEC;box-shadow:0 0 0 3px rgba(0,173,236,.25)}
+.mc-field input[type=file]{padding:9px 10px;background:#f2f8fb;font-size:14px}
+/* estado invalido: borda vermelha + label vermelho + dica */
+.mc-field.mc-invalid input,.mc-field.mc-invalid select{border-color:#d23f31;box-shadow:0 0 0 3px rgba(210,63,49,.18)}
+.mc-field.mc-invalid>span{color:#d23f31}
+.mc-hint{display:none;font-size:12.5px;color:#d23f31;font-weight:700}
+.mc-field.mc-invalid .mc-hint{display:block}
+.mc-hcaptcha{margin:8px 0 20px}
+.mc-actions{display:flex;flex-direction:column;gap:14px}
+/* banner de erros: lista os campos que faltam */
+.mc-errors{display:none;background:#fdecea;border:1.5px solid #f0b7af;border-left:5px solid #d23f31;border-radius:8px;padding:12px 16px;color:#8f271b;font-size:14px}
+.mc-errors.mc-show{display:block}
+.mc-errors b{color:#8f271b}
+.mc-submit{background:#00ADEC;color:#fff;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;border:0;border-radius:9px;padding:15px 40px;cursor:pointer;transition:background .15s,transform .05s;align-self:flex-start}
+@media (hover:hover) and (pointer:fine){.mc-submit:hover{background:#020E66}}
+.mc-submit:active{transform:translateY(1px)}
+.mc-submit:disabled{background:#9fb4c0;cursor:default}
+@media(max-width:640px){.mc-submit{width:100%;text-align:center}}
+/* banners de status */
+.mc-status{margin:0;font-size:14.5px;line-height:1.5}
+.mc-status:empty{display:none}
+.mc-status--info{color:#3a4a54}
+.mc-status--ok{background:#e7f7ee;border:1.5px solid #a9dcbe;border-left:5px solid #1E8A4C;border-radius:8px;padding:14px 18px;color:#12603a;font-weight:600}
+.mc-status--erro{background:#fdecea;border:1.5px solid #f0b7af;border-left:5px solid #d23f31;border-radius:8px;padding:14px 18px;color:#8f271b;font-weight:600}
+/* onda45:carreiras-form:fim */
+
+/* onda47:hero-respiro:ini */
+/* Achado de 11/08 (colega do Mario, tela ~1920x730): em viewport BAIXO o
+   conteudo do hero fica maior que o banner (height = 100svh - logos) e, com
+   align-items:center, vaza por CIMA — o "Estratégia" some embaixo do menu
+   fixo (98px). Medido: t=16px a 1280x620; ate o 1366x768 da suite tinha 8px
+   encobertos. Conserto: min-height em vez de height — a dobra segue exata
+   sempre que o conteudo cabe (todo o caso comum), e em tela baixa o banner
+   CRESCE (rola um pouco) em vez de decapitar o titulo. O padding-top de
+   118px do onda8 volta a valer como folga real acima do menu. */
+@media only screen and (min-width: 992px){
+  .homepage .banner{
+    height:auto;
+    min-height:max(430px, calc(100vh - var(--onda8-logos-h)));
+    min-height:max(430px, calc(100svh - var(--onda8-logos-h)));
+    /* 118/20 do onda8 viravam altura minima real neste modelo e estouravam
+       25px a 1400x900; 108 = 98px do menu + 10 de respiro. */
+    padding:108px 0 4px;
+  }
+}
+/* onda47:hero-respiro:fim */
+
+/* onda53:home-ia:ini */
+/* onda53 (#211) — a home diz que a consultoria e tradicional mas usa IA.
+   Selo "AI Powered" ao lado do slogan + IA como faixa TRANSVERSAL sob as 3
+   praticas. Nada aqui toca no tema: sao classes proprias. */
+
+/* 1. selo ao lado de Estrategia/Confianca/Resultados. O h2 e o selo num flex
+   row; em caixa estreita o selo desce sozinho (sem media query com numero
+   magico — quem decide e o proprio flex-wrap). */
+/* onda53 v4: o selo e EYEBROW ACIMA do slogan (era ao lado, e flutuava sem
+   ancora na altura do "Confianca"). Coluna, nao linha. */
+.onda53-slogan{display:block}
+/* ritmo do card, medido NA TINTA por analise de pixel (a caixa de linha mente:
+   o line-height de 160% do slogan enche a caixa de entrelinha). Gap de tinta
+   entre as 3 palavras: 20px. O gap ate a frase era 46px — mais que o dobro —
+   e o Mario pediu "igualmente distribuido". As margens abaixo sao o que faz os
+   tres gaps darem ~20px; o -20 no h2 desconta a entrelinha morta do line-height. */
+/* onda53 v4: negativo de proposito — o
+   slogan tem ~25px de entrelinha morta acima da tinta, entao puxar 20px nao
+   encosta em nada e devolve à dobra o que o eyebrow custou (34px medidos). */
+/* onda63 (19/08): os dois negativos abaixo valiam em TODA largura, mas foram
+   medidos na tinta do DESKTOP, onde a entrelinha morta e ~18,6px (62px/160%).
+   Abaixo de 992px a fonte cai para 38px/116% e a entrelinha morta vira ~3px --
+   os -20px passavam a comer 27px do paragrafo, e o -6px encostava o eyebrow no
+   "Estrategia". Medido no navegador em 390/768/1024/1400. Escopados aqui, com
+   ritmo proprio para o mobile; editado NO LUGAR (valores gemeos). */
+@media only screen and (min-width:992px){
+  .onda53-selo-ia{margin-bottom:-6px}
+  .onda53-slogan h2{margin-bottom:-20px}
+}
+@media only screen and (max-width:991px){
+  .onda53-selo-ia{margin-bottom:18px}
+  .onda53-slogan h2{margin-bottom:20px}
+}
+/* onda53 v2 (13/08) — a 1a versao era pilula ciano solida com canto 14px: lia
+   como etiqueta de e-commerce ("o ai powered precisa melhorar", Mario). Agora
+   segue o STICKER dos nossos decks (R15: caixa alta, tique vertical colado a
+   esquerda, sem preenchimento) — mesmo registro do eyebrow que o horizonte3.com
+   usa no hero (medido: 12px, peso 600, letter-spacing 2,2px, regua de 22x1px),
+   que foi a referencia que o Andreas citou. Selo ANOTA o slogan, nao compete.
+   Peso 500 / tracking .12em, nao 700 / .18em da 1a tentativa: o sticker da R15 e
+   "Arial 12pt REGULAR caixa alta" — bold contraria o padrao da propria casa — e
+   os pares medidos ficam em 400-500 com tracking quase nulo (Accenture 12px/500
+   ls .02em; McKinsey 14px/300 ls normal; Bain 13px/500). Tracking largo e
+   convencao de DOC de design system, nao do que os grandes renderizam.
+   PESO 600, nao 500: a S127 barrou o 500 — ele NAO esta entre os pesos que o
+   <head> carrega (200/300/400/600/700/900) e o navegador o sintetizaria, que e
+   a classe de bug da onda 35. Dos pesos reais, 600 e o mais proximo do registro
+   "medium" dos pares; 400 (o regular da R15) esmaece sobre a foto do hero. */
+.onda53-selo-ia{display:inline-flex;align-items:center;gap:11px;
+  color:#00ADEC;font-weight:600;font-size:13px;line-height:1;
+  letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
+  background:none;padding:0;border-radius:0;box-shadow:none}
+.onda53-selo-ia::before{content:"";flex:0 0 auto;width:2px;height:1.55em;
+  background:#00ADEC}
+
+/* 2. faixa transversal de IA. Ela e filha do .praticas-3 (flex-wrap), entao o
+   flex-basis 100% ja a faz atravessar as 3 colunas — a "transversalidade" e
+   estrutural, nao um posicionamento a mao. */
+.praticas-3__transversal{flex:1 1 100%;display:flex;align-items:flex-start;
+  gap:18px;margin-top:4px;padding:22px 26px;background:#F2F7FB;
+  border-left:4px solid #00ADEC;box-sizing:border-box}
+.onda53-ia__glifo{flex:0 0 auto;margin-top:4px}
+.onda53-ia__texto{flex:1 1 auto;min-width:0}
+.onda53-ia__tag{display:block;color:#00ADEC;font-weight:700;font-size:13px;
+  letter-spacing:.04em;margin-bottom:4px}
+.onda53-ia__titulo{color:#020E66;font-weight:700;margin:0 0 8px}
+.onda53-ia__desc{color:#071C25;margin:0}
+@media only screen and (max-width: 767px){
+  .praticas-3__transversal{padding:18px 18px;gap:14px}
+  /* onda53 v2: o padding/font-size daqui era da pilula antiga — valor gemeo
+     morto. O sticker encolhe so o corpo, o tique acompanha via em. */
+  .onda53-selo-ia{font-size:12px;letter-spacing:.10em}
+}
+/* onda53:home-ia:fim */
+
+/* onda56:share-direto:ini */
+.a2a_kit a{color:#020E66;display:inline-flex;align-items:center;
+justify-content:center;width:32px;height:32px;transition:color .15s}
+.a2a_kit a:hover,.a2a_kit a:focus{color:#00ADEC}
+/* onda56:share-direto:fim */
+
+/* onda57:politica-v2:ini */
+.pol-v2 h2{font-size:1.25rem;color:#fff;margin:2rem 0 .6rem}
+.pol-v2 h3{font-size:1.05rem;color:#00ADEC;margin:1.4rem 0 .4rem}
+.pol-v2 p,.pol-v2 li{line-height:1.6}
+.pol-v2 strong{color:#fff}
+.pol-v2 table{width:100%;border-collapse:collapse;margin:.8rem 0 1.4rem;font-size:.95rem}
+.pol-v2 th,.pol-v2 td{border:1px solid #7F7F7F;padding:.5rem .7rem;text-align:left;
+vertical-align:top}
+.pol-v2 th{background:#AAD5E8;color:#071C25;font-weight:600}
+.pol-v2 td{color:#D2D2D2}
+.pol-v2 .pol-v2__data{color:#AAD5E8;font-size:.9rem;margin-bottom:1.5rem}
+/* Os nomes de cookie usam <code> por semantica, mas o tema estiliza code com
+ * pilha monospace — e o site inteiro roda em UMA fonte desde a onda 26. A V12
+ * pegou os 4 elementos. Mantem-se a tag e herda-se a familia. */
+.pol-v2 code{font-family:inherit;font-size:.95em;background:rgba(170,213,232,.18);
+padding:.08em .35em;border-radius:3px}
+.pol-v2 .pol-v2__optout{background:#020E66;color:#fff;border:0;border-radius:4px;
+padding:.7rem 1.2rem;font:inherit;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.pol-v2 .pol-v2__optout:hover{background:#00ADEC}}
+.pol-v2 .pol-v2__status{margin-left:.8rem;color:#020E66;font-weight:600}
+@media (max-width:600px){.pol-v2 table,.pol-v2 tbody,.pol-v2 tr,.pol-v2 td,.pol-v2 th{
+display:block}.pol-v2 thead{display:none}.pol-v2 td{border-top:0}
+.pol-v2 tr{border-top:1px solid #D2D2D2;margin-bottom:.8rem}}
+/* onda57:politica-v2:fim */
+
+/* onda66:slogan-fluido:ini */
+/* ---- onda66: o slogan do hero deixa de saltar 63% em 992px -----------------
+   Medido pelo baseline (320->2560 de 64 em 64): 38,0 -> 62,0px entre 960 e 1024px.
+   O par 38/62 e do TEMA (.banner__title), nao da nossa camada, entao aqui e
+   override e nao edicao no lugar.
+   A reta passa pelos dois valores aprovados: 768px -> 38,0 e 1400px -> 62,0.
+   line-height e margens NAO mudam nesta passada — ver o cabecalho do
+   131_tipografia_fluida.py para o porque (o gap tinta a tinta de 13,1/10,2px e a
+   entrelinha morta de 3,0/18,6px sao consistentes entre si). */
+.hero-texto .onda53-slogan h2,
+.banner__content .onda53-slogan h2{
+  font-size:clamp(38px, 8.8px + 3.8vw, 62px) !important}
+/* onda66:slogan-fluido:fim */
+
+/* onda67:busca:ini */
+/* ---- onda67 (#104): resultados da busca estatica -------------------------
+   Herda a tipografia do corpo; a lista usa a mesma gramatica visual da lista de
+   imprensa (linha inteira clicavel, fundo branco, separador fino), para nao
+   inventar um componente novo. */
+.onda67-busca{margin:0 0 44px}
+.onda67-busca__contagem{font-size:15px;color:#7F7F7F;margin:0 0 14px}
+.onda67-busca__vazio{font-size:17px;color:#071C25;margin:0;padding:18px 20px;
+  background:#fff;border-left:3px solid #00ADEC}
+.onda67-busca__lista{list-style:none;margin:0;padding:0;background:#fff}
+.onda67-busca__item+.onda67-busca__item{border-top:1px solid #E5E5E5}
+.onda67-busca__link{display:grid;gap:4px;padding:18px 22px;text-decoration:none}
+.onda67-busca__link:hover .onda67-busca__titulo{color:#00ADEC}
+.onda67-busca__titulo{font-size:clamp(16px,14.6px + 0.19vw,18px);font-weight:700;
+  color:#020E66;line-height:1.3}
+.onda67-busca__trecho{font-size:15px;color:#071C25;line-height:1.5}
+.onda67-busca__trecho mark{background:#AAD5E8;color:#071C25;padding:0 2px}
+@media only screen and (max-width: 991px){
+  .onda67-busca__link{padding:16px 16px}
+  .onda67-busca__trecho{font-size:14px}
+}
+/* onda67:busca:fim */
+
+/* onda68:ia-praticas:ini */
+/* ---- onda68 (#212/#213/#214): "Como usamos IA" na pagina de pratica ---------
+   PALETA MEDIDA, NAO SUPOSTA. A primeira versao deste bloco usou titulo navy
+   #020E66 e subtitulo cinza #7F7F7F, porque eu assumi fundo branco -- a lista de
+   imprensa, de onde vinha a gramatica visual, e branca. Medido no render: o fundo
+   da pagina de pratica e uma IMAGEM azul (nao ha background-color para o
+   getComputedStyle achar), e o texto do proprio tema ali e BRANCO:
+       .experience-single__content h3   -> rgb(255,255,255) peso 700
+       .experience-single__content p    -> rgb(255,255,255) peso 400
+       .experience-single__cases-list-item p -> rgb(255,255,255) peso 300
+   Navy sobre aquele azul e ilegivel, e cinza #7F7F7F e pior.
+   (O h4 "Cases" do tema E navy -- mas ele tem 350px e funciona como marca d'agua
+   decorativa, nao como titulo de leitura. Nao serve de referencia.)
+   Este bloco segue a convencao do CONTEUDO da pagina: branco, com o acento ciano
+   -- que le sobre azul -- como unico sinal proprio. A V39 mede o contraste. */
+.onda68-ia{margin:0 0 46px}
+.onda68-ia__titulo{color:#fff;font-weight:700;
+  font-size:clamp(20px,16.6px + 0.53vw,26px);margin:0 0 4px}
+/* .88 e nao .78: a V39 mediu o contraste no PIXEL e o .78 dava 4,35:1 contra
+   o fundo real rgb(46,91,204) -- abaixo do piso de 4,5 do texto normal. Com
+   .88 fica 5,0:1. Calculado, nao chutado. */
+.onda68-ia__subtitulo{color:rgba(255,255,255,.88);font-weight:400;
+  font-size:clamp(15px,13.6px + 0.19vw,17px);margin:0 0 20px}
+.onda68-ia__lista{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:16px}
+.onda68-ia__item{border-left:3px solid #00ADEC;padding:2px 0 2px 16px}
+.onda68-ia__item-titulo{display:block;color:#fff;font-weight:700;
+  font-size:clamp(16px,14.6px + 0.19vw,19px);line-height:1.3;margin:0 0 4px}
+.onda68-ia__item-texto{display:block;color:rgba(255,255,255,.92);
+  font-size:clamp(15px,13.9px + 0.15vw,17px);line-height:1.55}
+/* o fecho e um painel claro DE PROPOSITO: ele carrega a ressalva (o julgamento
+   continua sendo do consultor) e o contraste invertido a destaca do resto */
+.onda68-ia__fecho{color:#071C25;font-size:clamp(15px,13.9px + 0.15vw,17px);
+  line-height:1.55;margin:0;padding:16px 18px;background:#F2F2F2;
+  border-left:3px solid #020E66}
+@media only screen and (max-width: 991px){
+  .onda68-ia__item{padding-left:13px}
+}
+/* onda68:ia-praticas:fim */
+
+/* onda59:sede:ini */
+.onda59-sede{max-width:760px;margin:8px auto 0;text-align:center;color:#5b6770;font-size:17px;line-height:1.5}
+/* onda59:sede:fim */
